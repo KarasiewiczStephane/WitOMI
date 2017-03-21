@@ -4,7 +4,7 @@ Version: 0.9.3
 Date: 2017-03-15
 Author: Stephane Karasiewicz
 Maintainer: Stephane Karasiewicz <stephane.karasiewicz@wanadoo.fr>
-Description: Complementary multivariate analysis to the Outlying Mean Index
+Description: Complementary indexes calculation to the Outlying Mean Index
     analysis to explore niche shift of a community and biological constraint within an Euclidean space, with
     graphical displays.
 Suggests: ade4TkGUI, adegraphics, ape, CircStats, deldir, lattice,
