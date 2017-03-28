@@ -1,0 +1,173 @@
+---
+title: Subniche Documentation for the Within Outlying Mean Indexes calculations (WitOMI)
+output: github_document
+bibliography: sub.bib
+csl: elsevier-harvard.csl
+---
+
+[subniche](https://cran.r-project.org/web/packages/subniche/index.html) is an open-source R [@r2017] package that implements functions useful for the calculation of the Within Outlying Mean Indexes (WitOMI) and their respective statistical tests [@karasiewicz2017]. It consists of complementary calculations to the Outlying Mean Index analysis (OMI) [@Doledec2000]. OMI analysis can be implemented with the `niche` function from the [ade4](https://cran.r-project.org/web/packages/ade4/index.html) package [@dray2007]. WitOMI analysis enables to explore niche shift in a community and environmental constraints within an Euclidean space, with graphical displays. The method allows to divide the realized niche, estimated from the `niche` function into subniches defined by a factor (time, space), which creates the subsets of habitat conditions.
+
+## How to get started
+
+Install and load the R package from [CRAN](https://cran.r-project.org/) using the following commands on the R console:
+
+```{r}
+#install.packages("subniche")
+library(subniche)
+``` 
+`
+To install the most recent version from GitHub:
+
+```{r}
+#install.packages("devtools")
+#devtools::install_github("polak51/WitOMI")
+library("subniche")
+```
+
+## Generate the data required to run this example
+
+Get the data set “doubs” from the [ade4](https://cran.r-project.org/web/packages/ade4/index.html) package [@dray2007]. This data set includes,  fish species abundances along with environmental variables, and spatial coordinates for 30 sites.
+
+```{r} 
+data(doubs)
+```
+
+## Performing the OMI analysis 
+
+The first step consists of performing a PCA on the environmental table.
+
+```{r, echo=T}
+dudi1 <- dudi.pca(doubs$env, scale = TRUE, scan = FALSE, nf = 3)
+scatter(dudi1)
+```
+
+The graph display the correlation between the different environmental variables. Next the OMI analysis uses the standardized environmental table from the PCA in combination with the faunistic data to performed the OMI analysis.
+The standardized environmental table can be extracted from the `dudi1` with `$tab` as follow:
+
+```{r, echo=F}
+library(knitr)
+kable(dudi1$tab)
+```
+
+The next step is to perform the OMI analysis from @Doledec2000 by implementing the function `niche` from the [ade4](https://cran.r-project.org/web/packages/ade4/index.html) package [@dray2007].
+
+```{r}
+nic1 <- niche(dudi1, doubs$fish, scann = FALSE)
+nic1
+plot(nic1)
+```
+
+The graph display the results of the OMI analysis within a two-dimensional Euclidean space. Its display the species niche position (labels in Samples and Species, top-right) and breadth (ellipses in Niches, bottom-right graph), within the 
+environmental gradients (summarized by Variables).
+The species niche parameter (Inertia, OMI, Tol and Rtol) are calculated with the `niche.parameter` function from the [ade4](https://cran.r-project.org/web/packages/ade4/index.html) package [@dray2007]. More details on the niche parameters' calculation in @Doledec2000.
+
+```{r}
+kable(niche.param(nic1))
+```
+
+The test for statistical significance can now be implemented
+
+```{r}
+rtest(nic1,100)
+```
+
+##Subsets creation
+
+Herein, for the sake of the example, we will simply create two subsets. A `factor` needs to be made, in order to divide the data in two subsets. The first environmental variable, `doubs$env[,1]`,being the distance from the source ("dfs"") and sorted in increasing order, will determine the spatial factor dividing the realized into subniches. 
+
+```{r}
+N <- dim(nic1$ls)[1]
+# N, is equal to the number of lines in the data.
+fact <- factor(c(rep(1,N/2),rep(2,N/2)))
+#Creates a factor which defines the subsets
+```
+
+Now that we have the factor for dividing the niche, the [subniche](https://cran.r-project.org/web/packages/subniche/index.html) function an be implemented as follow:
+
+```{r}
+subnic1 <- subniche(nic1, fact)
+subnic1
+```
+
+The [subniche](https://cran.r-project.org/web/packages/subniche/index.html) function only add `items`to the `niche` list, which are `$factor`, `$G_k` and `$sub`. The function does not change the results of the OMI analysis from the `niche` function The folowing functions, `plot`, `refparam` and `rtest`, are used to display the same results as in the `ade4` package:
+
+```{r}
+plot(subnic1)
+```
+
+The niche parameters from the OMI analysis can still be extracted with its respective significant test with `refparam`. The test for significance  can also be applied, with  `rtest` function. 
+
+```{r}
+kable(refparam(subnic1))
+rtest(subnic1)
+```
+
+## Calculation of the WitOMI
+
+![](Warning.png)The result of the test on marginality from the OMI analysis are important for the relevance of the WitOMI calculation. The following functions will still calculate the WitOMI even if the OMI are not significant. OMI must be significant if the WitOMI are to be used for interpretation. See @karasiewicz2017 for more details.
+
+`margvect `displays the marginality vector of the suborigins,*G~K~* ,within the overall available habitat conditions (black polygon), the available resource under each subset habitat condition (red polygons), and the species subniche (species label).
+
+```{r}
+margvect(subnic1)
+```
+
+`subplot` displays the subset's constraint of habitat conditions (red polygons), found within the overall available habitat condition (black polygons), and the corresponding species subniche positions. The arrows representing the marginality vectors from the sub-orgins *G~K~* (red dots), corresponds to the graphical representation of the WitOMI*G~K~*.
+
+```{r}
+subplot(subnic1)
+```
+
+`subparam.refor` calculates the species marginality (WitOMI*G*), tolerance (Tol) and residual tolerance (Rtol) to the average habitat condition (*G*). For details on the parameters calculation see @karasiewicz2017.
+
+```{r}
+kable(subparam.refor(subnic1))
+```
+
+`rtestrefor` calculates the subniches' parameters from *G* with the respective significant test. The  output of the `rtestrefor` function is an object of class `list`, which includes the results of the WitOMI*G* significant test, under each subset defined by the `$factor`. 
+
+```{r}
+refor <- rtestrefor(subnic1,100)
+```
+
+First,for each of the two subsets, the subset statictical significance is tested with the following null hypothesis that *G~K~* is not different from the overall average habitat conditions, represented by *G*. The subsets *P* value is equal to the product of equiprobabilities to find the same mean value for each variables [@karasiewicz2017].
+
+```{r}
+refor[[1]]$Subsettest
+refor[[2]]$Subsettest
+```
+
+Second the species marginality were tested for statistical significance following the null hypothesis that the species within each of the subsets is uninfluenced by its overall average habitat conditions (ubiquitous), for WitOMI*G* [@karasiewicz2017].
+
+```{r}
+refor[[1]]$witomigtest
+refor[[2]]$witomigtest
+```
+
+`subparam.subor` calculates the species marginality (WitOMI*G~K~*), tolerance (Tol) and residual tolerance (Rtol) to the subset average habitat condition (*G~K~*). For details on the parameters calculation see @karasiewicz2017.
+
+```{r}
+kable(subparam.subor(subnic1))
+```
+
+In a similar fashion, `rtestsubor` calculates the subniches' parameters from *G~K~* with the respective significance test. The  output of the `rtestsubor` function is an object of class `list`, which includes the results of the WitOMI*G~K~* significance test, under each of the two subsets defined by the `$factor`. 
+
+```{r}
+subor <- rtestsubor(subnic1,100)
+```
+
+As previously, the subsets are tested.
+
+```{r}
+subor[[1]]$Subsettest
+subor[[2]]$Subsettest
+```
+
+Second the species marginality were tested for significance following the null hypothesis that the species within a subset is uninfluenced by its subset average habitat conditions (ubiquitous), for WitOMI*G~K~* [@karasiewicz2017].
+
+```{r}
+refor[[1]]$witomigtest
+refor[[2]]$witomigtest
+```
+
+## Reference
