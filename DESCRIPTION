@@ -1,15 +1,14 @@
 Package: subniche
 Title: Within Outlying Mean Indexes: Refining the OMI Analysis
-Version: 0.9.3
-Date: 2017-03-15
+Version: 0.9.4
+Date: 2017-03-24
 Author: Stephane Karasiewicz
 Maintainer: Stephane Karasiewicz <stephane.karasiewicz@wanadoo.fr>
-Description: Complementary indexes calculations to the Outlying Mean Index
-    analysis to explore niche shift of a community and biological constraint within an Euclidean space, with
-    graphical displays.
+Description: Complementary indexes calculation to the Outlying Mean Index analysis to explore niche shift of a community and biological constraint within an Euclidean space, with graphical displays.
 Suggests: ade4TkGUI, adegraphics, ape, CircStats, deldir, lattice,
-    maptools, MASS, pixmap, spdep, splancs, waveslim
-Depends:
-    ade4
+        maptools, MASS, pixmap, spdep, splancs, waveslim
+Depends: ade4
 License: GPL (>= 2)
 RoxygenNote: 6.0.1
+NeedsCompilation: no
+Packaged: 2017-03-28 23:20:32 UTC; St<c3><a9>phane
