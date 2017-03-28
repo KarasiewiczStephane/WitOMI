@@ -335,7 +335,7 @@ rtest(subnic1)
 Calculation of the WitOMI
 -------------------------
 
-![](Warning.png)The result of the test on marginality from the OMI analysis are important for the relevance of the WitOMI calculation. The following functions will still calculate the WitOMI even if the OMI are not significant. OMI must be significant if the WitOMI are to be used for interpretation. See Karasiewicz et al. (2017) for more details.
+![](README_files/figure-markdown_github/Warning.png)The result of the test on marginality from the OMI analysis are important for the relevance of the WitOMI calculation. The following functions will still calculate the WitOMI even if the OMI are not significant. OMI must be significant if the WitOMI are to be used for interpretation. See Karasiewicz et al. (2017) for more details.
 
 `margvect`displays the marginality vector of the suborigins,*G<sub>K</sub>* ,within the overall available habitat conditions (black polygon), the available resource under each subset habitat condition (red polygons), and the species subniche (species label).
 
