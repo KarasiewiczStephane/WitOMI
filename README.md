@@ -1,7 +1,7 @@
 Subniche Documentation for the Within Outlying Mean Indexes calculations (WitOMI)
 ================
 
-[subniche](https://cran.r-project.org/web/packages/subniche/index.html) is an open-source R (R Core Team, 2017) package that implements functions useful for the calculation of the Within Outlying Mean Indexes (WitOMI) and their respective statistical tests (Karasiewicz et al., 2017). It consists of complementary calculations to the Outlying Mean Index analysis (OMI) (Dolédec et al., 2000). OMI analysis can be implemented with the `niche` function from the [ade4](https://cran.r-project.org/web/packages/ade4/index.html) package (Dray and Dufour, 2007). WitOMI analysis enables to explore niche shift in a community and environmental constraints within an Euclidean space, with graphical displays. The method allows to divide the realized niche, estimated from the `niche` function into subniches defined by a factor (time, space), which creates the subsets of habitat conditions.
+[subniche](https://cran.r-project.org/web/packages/subniche/index.html) is an open-source R (R Core Team, 2017) package that implements functions useful for the calculation of the Within Outlying Mean Indexes (WitOMI) and their respective statistical tests (Karasiewicz, 2017; Karasiewicz et al., 2017).. It consists of complementary calculations to the Outlying Mean Index analysis (OMI) (Dolédec et al., 2000). OMI analysis can be implemented with the `niche` function from the [ade4](https://cran.r-project.org/web/packages/ade4/index.html) package (Dray and Dufour, 2007). WitOMI analysis enables to explore niche shift in a community and environmental constraints within an Euclidean space, with graphical displays. The method allows to divide the realized niche, estimated from the `niche` function into subniches defined by a factor (time, space), which creates the subsets of habitat conditions.
 
 How to get started
 ------------------
@@ -9,7 +9,7 @@ How to get started
 Install and load the R package from [CRAN](https://cran.r-project.org/) using the following commands on the R console:
 
 ``` r
-install.packages("subniche")
+#install.packages("subniche")
 library(subniche)
 ```
 
@@ -18,8 +18,8 @@ library(subniche)
 \` To install the most recent version from GitHub:
 
 ``` r
-install.packages("devtools")
-devtools::install_github("polak51/WitOMI")
+#install.packages("devtools")
+#devtools::install_github("polak51/WitOMI")
 library("subniche")
 ```
 
@@ -167,34 +167,34 @@ rtest(nic1,100)
     ## Adjustment method for multiple comparisons:   none 
     ## Permutation number:   100 
     ##        Test       Obs    Std.Obs   Alter     Pvalue
-    ## 1      Cogo 2.6560006  1.6606579 greater 0.08910891
-    ## 2      Satr 3.5242789  7.1352423 greater 0.00990099
-    ## 3      Phph 2.0454327  6.5743623 greater 0.00990099
-    ## 4      Neba 1.3244021  6.3169428 greater 0.00990099
-    ## 5      Thth 2.6687690  0.7377967 greater 0.17821782
-    ## 6      Teso 2.0966432  0.4555335 greater 0.26732673
-    ## 7      Chna 3.0036630  3.8653384 greater 0.01980198
-    ## 8      Chto 2.0228932  1.9427213 greater 0.05940594
-    ## 9      Lele 0.5832650  0.6561813 greater 0.19801980
-    ## 10     Lece 0.6959801  3.2513244 greater 0.02970297
-    ## 11     Baba 2.8240029  5.5920668 greater 0.00990099
-    ## 12     Spbi 3.6481419  4.2569001 greater 0.00990099
-    ## 13     Gogo 2.2051499  8.0663462 greater 0.00990099
-    ## 14     Eslu 1.5285287  3.0340501 greater 0.03960396
-    ## 15     Pefl 1.4293101  1.8130793 greater 0.08910891
-    ## 16     Rham 4.9065929  6.5287530 greater 0.00990099
-    ## 17     Legi 4.8252988  9.1634332 greater 0.00990099
-    ## 18     Scer 4.2331196  3.5619994 greater 0.02970297
-    ## 19     Cyca 5.2211179  6.2057832 greater 0.00990099
-    ## 20     Titi 1.8106553  3.3939209 greater 0.01980198
-    ## 21     Abbr 5.8043296  5.9362032 greater 0.00990099
-    ## 22     Icme 8.4683537  4.2185166 greater 0.01980198
-    ## 23     Acce 5.7953055  7.8291305 greater 0.00990099
-    ## 24     Ruru 1.9475787  4.3087218 greater 0.00990099
-    ## 25     Blbj 5.6984685  5.0278662 greater 0.00990099
-    ## 26     Alal 4.9846448 13.3438057 greater 0.00990099
-    ## 27     Anan 5.7954132  6.7804941 greater 0.00990099
-    ## 28 OMI.mean 3.3980496 18.8683466 greater 0.00990099
+    ## 1      Cogo 2.6560006  2.4339201 greater 0.02970297
+    ## 2      Satr 3.5242789  8.3403331 greater 0.00990099
+    ## 3      Phph 2.0454327  8.2118815 greater 0.00990099
+    ## 4      Neba 1.3244021  8.4938562 greater 0.00990099
+    ## 5      Thth 2.6687690  1.3393932 greater 0.10891089
+    ## 6      Teso 2.0966432  0.6276960 greater 0.15841584
+    ## 7      Chna 3.0036630  4.0389437 greater 0.00990099
+    ## 8      Chto 2.0228932  3.0570521 greater 0.01980198
+    ## 9      Lele 0.5832650  0.5775228 greater 0.27722772
+    ## 10     Lece 0.6959801  4.4226374 greater 0.00990099
+    ## 11     Baba 2.8240029  6.1547121 greater 0.00990099
+    ## 12     Spbi 3.6481419  3.4819985 greater 0.02970297
+    ## 13     Gogo 2.2051499  7.8982473 greater 0.00990099
+    ## 14     Eslu 1.5285287  1.8204098 greater 0.08910891
+    ## 15     Pefl 1.4293101  1.4366071 greater 0.10891089
+    ## 16     Rham 4.9065929  5.6657582 greater 0.00990099
+    ## 17     Legi 4.8252988  7.5866169 greater 0.00990099
+    ## 18     Scer 4.2331196  4.9142159 greater 0.00990099
+    ## 19     Cyca 5.2211179  5.4052274 greater 0.00990099
+    ## 20     Titi 1.8106553  3.4837953 greater 0.00990099
+    ## 21     Abbr 5.8043296  6.3739635 greater 0.00990099
+    ## 22     Icme 8.4683537  4.1672182 greater 0.01980198
+    ## 23     Acce 5.7953055  8.8773231 greater 0.00990099
+    ## 24     Ruru 1.9475787  3.9677957 greater 0.00990099
+    ## 25     Blbj 5.6984685  5.7319274 greater 0.00990099
+    ## 26     Alal 4.9846448 13.0491652 greater 0.00990099
+    ## 27     Anan 5.7954132  7.6148838 greater 0.00990099
+    ## 28 OMI.mean 3.3980496 21.1256526 greater 0.00990099
     ## 
     ## other elements: adj.method call
 
@@ -301,34 +301,34 @@ rtest(subnic1)
     ## Adjustment method for multiple comparisons:   none 
     ## Permutation number:   99 
     ##        Test       Obs    Std.Obs   Alter Pvalue
-    ## 1      Cogo 2.6560006  1.2138129 greater   0.15
-    ## 2      Satr 3.5242789 11.5877012 greater   0.01
-    ## 3      Phph 2.0454327  6.9413849 greater   0.01
-    ## 4      Neba 1.3244021  6.8216601 greater   0.01
-    ## 5      Thth 2.6687690  1.0440266 greater   0.17
-    ## 6      Teso 2.0966432  0.4533327 greater   0.24
-    ## 7      Chna 3.0036630  3.9729083 greater   0.03
-    ## 8      Chto 2.0228932  1.7057245 greater   0.10
-    ## 9      Lele 0.5832650  0.3695378 greater   0.31
-    ## 10     Lece 0.6959801  3.0736532 greater   0.03
-    ## 11     Baba 2.8240029  7.2799010 greater   0.01
-    ## 12     Spbi 3.6481419  3.7665235 greater   0.02
-    ## 13     Gogo 2.2051499  5.3899491 greater   0.01
-    ## 14     Eslu 1.5285287  4.0286916 greater   0.01
-    ## 15     Pefl 1.4293101  1.9420519 greater   0.08
-    ## 16     Rham 4.9065929  7.0260012 greater   0.01
-    ## 17     Legi 4.8252988  6.9820410 greater   0.01
-    ## 18     Scer 4.2331196  4.5914608 greater   0.01
-    ## 19     Cyca 5.2211179  5.6401309 greater   0.01
-    ## 20     Titi 1.8106553  3.1539495 greater   0.02
-    ## 21     Abbr 5.8043296  4.2218153 greater   0.02
-    ## 22     Icme 8.4683537  5.4140944 greater   0.01
-    ## 23     Acce 5.7953055  8.1646214 greater   0.01
-    ## 24     Ruru 1.9475787  5.0148697 greater   0.01
-    ## 25     Blbj 5.6984685  6.6012708 greater   0.01
-    ## 26     Alal 4.9846448  9.9455256 greater   0.01
-    ## 27     Anan 5.7954132  7.0784871 greater   0.01
-    ## 28 OMI.mean 3.3980496 20.3641137 greater   0.01
+    ## 1      Cogo 2.6560006  1.7873414 greater   0.07
+    ## 2      Satr 3.5242789  8.3474355 greater   0.01
+    ## 3      Phph 2.0454327  8.0491229 greater   0.01
+    ## 4      Neba 1.3244021  5.1510829 greater   0.01
+    ## 5      Thth 2.6687690  0.6083606 greater   0.23
+    ## 6      Teso 2.0966432  0.5122225 greater   0.15
+    ## 7      Chna 3.0036630  3.8884411 greater   0.01
+    ## 8      Chto 2.0228932  1.8139415 greater   0.06
+    ## 9      Lele 0.5832650  0.6728967 greater   0.21
+    ## 10     Lece 0.6959801  3.5634387 greater   0.02
+    ## 11     Baba 2.8240029  5.7081239 greater   0.01
+    ## 12     Spbi 3.6481419  3.9415895 greater   0.02
+    ## 13     Gogo 2.2051499  6.1740244 greater   0.01
+    ## 14     Eslu 1.5285287  3.4098750 greater   0.01
+    ## 15     Pefl 1.4293101  1.8457378 greater   0.07
+    ## 16     Rham 4.9065929  7.2969264 greater   0.01
+    ## 17     Legi 4.8252988  4.6604150 greater   0.02
+    ## 18     Scer 4.2331196  3.3488014 greater   0.04
+    ## 19     Cyca 5.2211179  5.0166369 greater   0.02
+    ## 20     Titi 1.8106553  2.3862846 greater   0.04
+    ## 21     Abbr 5.8043296  5.0589257 greater   0.01
+    ## 22     Icme 8.4683537  5.8326111 greater   0.01
+    ## 23     Acce 5.7953055  6.7553329 greater   0.01
+    ## 24     Ruru 1.9475787  4.8578089 greater   0.02
+    ## 25     Blbj 5.6984685  6.6631860 greater   0.01
+    ## 26     Alal 4.9846448  9.7759140 greater   0.01
+    ## 27     Anan 5.7954132  9.2389494 greater   0.01
+    ## 28 OMI.mean 3.3980496 22.1291059 greater   0.01
     ## 
     ## other elements: adj.method call
 
@@ -437,18 +437,18 @@ refor[[1]]$Subsettest
     ## Adjustment method for multiple comparisons:   none 
     ## Permutation number:   100 
     ##    Test        Obs    Std.Obs     Alter     Pvalue
-    ## 1   dfs -0.8603563 -4.1891161 two-sided 0.00990099
-    ## 2   alt  0.8413738  4.4215459 two-sided 0.00990099
-    ## 3   slo  0.6719200  3.0989962 two-sided 0.00990099
-    ## 4   flo -0.7343498 -3.6586810 two-sided 0.00990099
-    ## 5    pH  0.1366260  0.8857542 two-sided 0.45544554
-    ## 6   har -0.4844664 -2.7618489 two-sided 0.00990099
-    ## 7   pho -0.4568414 -2.2529554 two-sided 0.00990099
-    ## 8   nit -0.7834262 -4.5012514 two-sided 0.00990099
-    ## 9   amm -0.4543625 -2.5181787 two-sided 0.00990099
-    ## 10  oxy  0.5127452  2.9062256 two-sided 0.00990099
-    ## 11  bdo -0.3869307 -2.2491948 two-sided 0.00990099
-    ## Subsets Pvalue: 4.123089e-21 
+    ## 1   dfs -0.8603563 -5.1269081 two-sided 0.00990099
+    ## 2   alt  0.8413738  4.9289456 two-sided 0.00990099
+    ## 3   slo  0.6719200  4.1023352 two-sided 0.00990099
+    ## 4   flo -0.7343498 -3.8565631 two-sided 0.00990099
+    ## 5    pH  0.1366260  0.7799796 two-sided 0.46534653
+    ## 6   har -0.4844664 -2.7501876 two-sided 0.00990099
+    ## 7   pho -0.4568414 -2.4321842 two-sided 0.00990099
+    ## 8   nit -0.7834262 -4.3234097 two-sided 0.00990099
+    ## 9   amm -0.4543625 -2.3307499 two-sided 0.00990099
+    ## 10  oxy  0.5127452  3.0018448 two-sided 0.00990099
+    ## 11  bdo -0.3869307 -1.7348761 two-sided 0.07920792
+    ## Subsets Pvalue: 3.370177e-20 
     ## other elements: subpvalue call
 
 ``` r
@@ -464,18 +464,18 @@ refor[[2]]$Subsettest
     ## Adjustment method for multiple comparisons:   none 
     ## Permutation number:   100 
     ##    Test        Obs    Std.Obs     Alter     Pvalue
-    ## 1   dfs  0.8603563  5.2424139 two-sided 0.00990099
-    ## 2   alt -0.8413738 -4.1197822 two-sided 0.00990099
-    ## 3   slo -0.6719200 -3.9150785 two-sided 0.00990099
-    ## 4   flo  0.7343498  4.6119135 two-sided 0.00990099
-    ## 5    pH -0.1366260 -0.6472265 two-sided 0.58415842
-    ## 6   har  0.4844664  2.9384958 two-sided 0.00990099
-    ## 7   pho  0.4568414  2.5051765 two-sided 0.00990099
-    ## 8   nit  0.7834262  4.0016152 two-sided 0.00990099
-    ## 9   amm  0.4543625  2.5581374 two-sided 0.00990099
-    ## 10  oxy -0.5127452 -2.6824093 two-sided 0.00990099
-    ## 11  bdo  0.3869307  2.0928609 two-sided 0.01980198
-    ## Subsets Pvalue: 1.057662e-20 
+    ## 1   dfs  0.8603563  4.6701733 two-sided 0.00990099
+    ## 2   alt -0.8413738 -4.8245728 two-sided 0.00990099
+    ## 3   slo -0.6719200 -3.8804963 two-sided 0.00990099
+    ## 4   flo  0.7343498  4.0718670 two-sided 0.00990099
+    ## 5    pH -0.1366260 -0.7172813 two-sided 0.55445545
+    ## 6   har  0.4844664  2.4421417 two-sided 0.00990099
+    ## 7   pho  0.4568414  2.3482441 two-sided 0.00990099
+    ## 8   nit  0.7834262  4.5627509 two-sided 0.00990099
+    ## 9   amm  0.4543625  2.2062005 two-sided 0.00990099
+    ## 10  oxy -0.5127452 -2.3523098 two-sided 0.02970297
+    ## 11  bdo  0.3869307  1.9923689 two-sided 0.06930693
+    ## Subsets Pvalue: 1.054077e-19 
     ## other elements: subpvalue call
 
 Second the species marginality were tested for statistical significance following the null hypothesis that the species within each of the subsets is uninfluenced by its overall average habitat conditions (ubiquitous), for WitOMI*G* (Karasiewicz et al., 2017).
@@ -491,35 +491,36 @@ refor[[1]]$witomigtest
     ## Number of tests:   28 
     ## 
     ## Adjustment method for multiple comparisons:   none 
-    ##        Test      Obs     Std.Obs   Alter N.perm     Pvalue  SubniPvalue
-    ## 1      Cogo 4.299120 -0.58074557 greater    100 0.66336634 2.735119e-21
-    ## 2      Satr 4.809033  0.04720326 greater    100 0.47524752 1.959488e-21
-    ## 3      Phph 3.925657 -0.41066447 greater    100 0.66336634 2.735119e-21
-    ## 4      Neba 4.205376 -0.01660352 greater    100 0.44554455 1.837020e-21
-    ## 5      Thth 3.969489 -0.53567986 greater    100 0.65346535 2.694296e-21
-    ## 6      Teso 6.896211  0.31544786 greater    100 0.23762376 9.797439e-22
-    ## 7      Chna      NaN         NaN greater    100         NA           NA
-    ## 8      Chto      NaN         NaN greater    100         NA           NA
-    ## 9      Lele 3.247430 -1.02941888 greater    100 0.86138614 3.551572e-21
-    ## 10     Lece 2.511241 -2.22064182 greater    100 1.00000000 4.123089e-21
-    ## 11     Baba 9.820319  3.08403743 greater    100 0.01980198 8.164533e-23
-    ## 12     Spbi      NaN         NaN greater    100         NA           NA
-    ## 13     Gogo 3.069763 -1.00919103 greater    100 0.83168317 3.429104e-21
-    ## 14     Eslu 5.390231  0.76883842 greater    100 0.24752475 1.020567e-21
-    ## 15     Pefl 6.179629  1.10076076 greater    100 0.15841584 6.531626e-22
-    ## 16     Rham      NaN         NaN greater    100         NA           NA
-    ## 17     Legi      NaN         NaN greater    100         NA           NA
-    ## 18     Scer 6.029779  0.12603564 greater    100 0.35643564 1.469616e-21
-    ## 19     Cyca      NaN         NaN greater    100         NA           NA
-    ## 20     Titi 4.501950 -0.22697841 greater    100 0.51485149 2.122779e-21
-    ## 21     Abbr      NaN         NaN greater    100         NA           NA
-    ## 22     Icme      NaN         NaN greater     99         NA           NA
-    ## 23     Acce      NaN         NaN greater    100         NA           NA
-    ## 24     Ruru 4.960883  0.17399190 greater    100 0.37623762 1.551261e-21
-    ## 25     Blbj      NaN         NaN greater    100         NA           NA
-    ## 26     Alal      NaN         NaN greater    100         NA           NA
-    ## 27     Anan      NaN         NaN greater    100         NA           NA
-    ## 28 OMI.mean 4.921074 -0.20385544 greater    100 0.56435644 2.326892e-21
+    ## Permutation number:   100 
+    ##        Test      Obs    Std.Obs   Alter     Pvalue  SubniPvalue
+    ## 1      Cogo 4.299120 -0.4797155 greater 0.65346535 2.202294e-20
+    ## 2      Satr 4.809033  0.1018531 greater 0.40594059 1.368092e-20
+    ## 3      Phph 3.925657 -0.3729193 greater 0.61386139 2.068822e-20
+    ## 4      Neba 4.205376 -0.1665233 greater 0.60396040 2.035454e-20
+    ## 5      Thth 3.969489 -0.7485319 greater 0.72277228 2.435871e-20
+    ## 6      Teso 6.896211  0.2437952 greater 0.30693069 1.034411e-20
+    ## 7      Chna      NaN        NaN greater         NA           NA
+    ## 8      Chto      NaN        NaN greater         NA           NA
+    ## 9      Lele 3.247430 -1.0826484 greater 0.86138614 2.903024e-20
+    ## 10     Lece 2.511241 -2.0763680 greater 1.00000000 3.370177e-20
+    ## 11     Baba 9.820319  3.6977387 greater 0.00990099 3.336809e-22
+    ## 12     Spbi      NaN        NaN greater         NA           NA
+    ## 13     Gogo 3.069763 -1.0322757 greater 0.91089109 3.069864e-20
+    ## 14     Eslu 5.390231  0.5189888 greater 0.29702970 1.001043e-20
+    ## 15     Pefl 6.179629  0.6771121 greater 0.20792079 7.007299e-21
+    ## 16     Rham      NaN        NaN greater         NA           NA
+    ## 17     Legi      NaN        NaN greater         NA           NA
+    ## 18     Scer 6.029779  0.3948968 greater 0.29702970 1.001043e-20
+    ## 19     Cyca      NaN        NaN greater         NA           NA
+    ## 20     Titi 4.501950  0.1235417 greater 0.39603960 1.334724e-20
+    ## 21     Abbr      NaN        NaN greater         NA           NA
+    ## 22     Icme      NaN        NaN greater         NA           NA
+    ## 23     Acce      NaN        NaN greater         NA           NA
+    ## 24     Ruru 4.960883  0.4021626 greater 0.29702970 1.001043e-20
+    ## 25     Blbj      NaN        NaN greater         NA           NA
+    ## 26     Alal      NaN        NaN greater         NA           NA
+    ## 27     Anan      NaN        NaN greater         NA           NA
+    ## 28 OMI.mean 4.921074 -0.2049249 greater 0.57425743 1.935349e-20
     ## 
     ## other elements: adj.method sub.pvalue subni.pvalue call
 
@@ -534,36 +535,35 @@ refor[[2]]$witomigtest
     ## Number of tests:   28 
     ## 
     ## Adjustment method for multiple comparisons:   none 
-    ## Permutation number:   100 
-    ##        Test      Obs     Std.Obs   Alter    Pvalue  SubniPvalue
-    ## 1      Cogo 1.126400 -0.74918278 greater 1.0000000 1.057662e-20
-    ## 2      Satr 1.495458 -1.40505188 greater 0.9801980 1.036718e-20
-    ## 3      Phph 1.482589 -1.89271634 greater 1.0000000 1.057662e-20
-    ## 4      Neba 1.459884 -2.11353379 greater 1.0000000 1.057662e-20
-    ## 5      Thth 3.615121 -0.50678299 greater 0.6831683 7.225612e-21
-    ## 6      Teso 1.256070 -0.87160078 greater 1.0000000 1.057662e-20
-    ## 7      Chna 3.003663 -0.76377319 greater 0.7722772 8.168083e-21
-    ## 8      Chto 2.022893 -1.08342192 greater 0.8910891 9.424711e-21
-    ## 9      Lele 2.687707 -0.97728721 greater 0.9306931 9.843587e-21
-    ## 10     Lece 3.866684 -0.49512973 greater 0.6732673 7.120893e-21
-    ## 11     Baba 3.216743 -0.64348363 greater 0.7920792 8.377521e-21
-    ## 12     Spbi 3.648142 -0.44031246 greater 0.6039604 6.387860e-21
-    ## 13     Gogo 3.956758 -0.36435106 greater 0.5544554 5.864264e-21
-    ## 14     Eslu 4.937736  0.07575571 greater 0.4059406 4.293479e-21
-    ## 15     Pefl 4.018942 -0.30575656 greater 0.5742574 6.073702e-21
-    ## 16     Rham 4.906593 -0.10462045 greater 0.4455446 4.712355e-21
-    ## 17     Legi 4.825299 -0.07156057 greater 0.4158416 4.398198e-21
-    ## 18     Scer 6.155192 -0.04669909 greater 0.3663366 3.874603e-21
-    ## 19     Cyca 5.221118 -0.16612895 greater 0.4356436 4.607636e-21
-    ## 20     Titi 4.169011 -0.30130592 greater 0.5445545 5.759545e-21
-    ## 21     Abbr 5.804330 -0.15713785 greater 0.4653465 4.921793e-21
-    ## 22     Icme 8.468354  0.25151290 greater 0.2871287 3.036851e-21
-    ## 23     Acce 5.795305  0.03643748 greater 0.4257426 4.502917e-21
-    ## 24     Ruru 3.920043 -0.43815121 greater 0.6039604 6.387860e-21
-    ## 25     Blbj 5.698468 -0.18189039 greater 0.4356436 4.607636e-21
-    ## 26     Alal 4.984645  0.18839853 greater 0.3366337 3.560446e-21
-    ## 27     Anan 5.795413 -0.12359602 greater 0.4455446 4.712355e-21
-    ## 28 OMI.mean 3.982910 -2.00880358 greater 1.0000000 1.057662e-20
+    ##        Test      Obs      Std.Obs   Alter N.perm    Pvalue  SubniPvalue
+    ## 1      Cogo 1.126400 -0.847993049 greater    100 1.0000000 1.054077e-19
+    ## 2      Satr 1.495458 -1.656416780 greater    100 1.0000000 1.054077e-19
+    ## 3      Phph 1.482589 -1.914492198 greater    100 0.9900990 1.043640e-19
+    ## 4      Neba 1.459884 -2.184671273 greater    100 1.0000000 1.054077e-19
+    ## 5      Thth 3.615121 -0.562734987 greater    100 0.6039604 6.366206e-20
+    ## 6      Teso 1.256070 -0.867823951 greater    100 0.9405941 9.914583e-20
+    ## 7      Chna 3.003663 -0.790086489 greater    100 0.8316832 8.766578e-20
+    ## 8      Chto 2.022893 -0.856164570 greater    100 0.9306931 9.810219e-20
+    ## 9      Lele 2.687707 -1.049134899 greater    100 0.9306931 9.810219e-20
+    ## 10     Lece 3.866684 -0.363414723 greater    100 0.6039604 6.366206e-20
+    ## 11     Baba 3.216743 -0.567872853 greater    100 0.6831683 7.201118e-20
+    ## 12     Spbi 3.648142 -0.451760319 greater    100 0.6039604 6.366206e-20
+    ## 13     Gogo 3.956758 -0.475981575 greater    100 0.6534653 6.888026e-20
+    ## 14     Eslu 4.937736  0.125899966 greater    100 0.4059406 4.278925e-20
+    ## 15     Pefl 4.018942 -0.419662467 greater    100 0.6039604 6.366206e-20
+    ## 16     Rham 4.906593 -0.249083098 greater    100 0.5049505 5.322565e-20
+    ## 17     Legi 4.825299 -0.180668831 greater    100 0.4356436 4.592017e-20
+    ## 18     Scer 6.155192  0.129548254 greater    100 0.3267327 3.444013e-20
+    ## 19     Cyca 5.221118 -0.104250894 greater    100 0.4554455 4.800745e-20
+    ## 20     Titi 4.169011 -0.348335832 greater    100 0.5940594 6.261842e-20
+    ## 21     Abbr 5.804330 -0.082686983 greater     99 0.3500000 3.689268e-20
+    ## 22     Icme 8.468354  0.045716532 greater    100 0.3762376 3.965833e-20
+    ## 23     Acce 5.795305  0.133893196 greater    100 0.2970297 3.130921e-20
+    ## 24     Ruru 3.920043 -0.473416613 greater    100 0.6237624 6.574934e-20
+    ## 25     Blbj 5.698468 -0.002604356 greater    100 0.3465347 3.652741e-20
+    ## 26     Alal 4.984645  0.094990529 greater    100 0.3762376 3.965833e-20
+    ## 27     Anan 5.795413 -0.012767457 greater    100 0.4059406 4.278925e-20
+    ## 28 OMI.mean 3.982910 -2.036166832 greater    100 0.9801980 1.033204e-19
     ## 
     ## other elements: adj.method sub.pvalue subni.pvalue call
 
@@ -650,19 +650,19 @@ subor[[1]]$Subsettest
     ## 
     ## Adjustment method for multiple comparisons:   none 
     ## Permutation number:   100 
-    ##    Test        Obs    Std.Obs     Alter     Pvalue
-    ## 1   dfs -0.8603563 -4.3634955 two-sided 0.00990099
-    ## 2   alt  0.8413738  4.4811462 two-sided 0.00990099
-    ## 3   slo  0.6719200  3.3046928 two-sided 0.00990099
-    ## 4   flo -0.7343498 -4.2361131 two-sided 0.00990099
-    ## 5    pH  0.1366260  0.9005758 two-sided 0.42574257
-    ## 6   har -0.4844664 -2.6333078 two-sided 0.00990099
-    ## 7   pho -0.4568414 -2.4826919 two-sided 0.00990099
-    ## 8   nit -0.7834262 -4.3791844 two-sided 0.00990099
-    ## 9   amm -0.4543625 -2.2195869 two-sided 0.00990099
-    ## 10  oxy  0.5127452  2.9443152 two-sided 0.00990099
-    ## 11  bdo -0.3869307 -2.0065536 two-sided 0.04950495
-    ## Subsets Pvalue: 1.927096e-20 
+    ##    Test        Obs   Std.Obs     Alter     Pvalue
+    ## 1   dfs -0.8603563 -4.505689 two-sided 0.00990099
+    ## 2   alt  0.8413738  4.284190 two-sided 0.00990099
+    ## 3   slo  0.6719200  3.481214 two-sided 0.00990099
+    ## 4   flo -0.7343498 -3.835711 two-sided 0.00990099
+    ## 5    pH  0.1366260  0.977780 two-sided 0.49504950
+    ## 6   har -0.4844664 -2.487243 two-sided 0.00990099
+    ## 7   pho -0.4568414 -2.371931 two-sided 0.00990099
+    ## 8   nit -0.7834262 -4.406508 two-sided 0.00990099
+    ## 9   amm -0.4543625 -3.082091 two-sided 0.00990099
+    ## 10  oxy  0.5127452  2.780679 two-sided 0.01980198
+    ## 11  bdo -0.3869307 -2.068883 two-sided 0.03960396
+    ## Subsets Pvalue: 3.585295e-20 
     ## other elements: subpvalue call
 
 ``` r
@@ -678,18 +678,18 @@ subor[[2]]$Subsettest
     ## Adjustment method for multiple comparisons:   none 
     ## Permutation number:   100 
     ##    Test        Obs    Std.Obs     Alter     Pvalue
-    ## 1   dfs  0.8603563  4.3615067 two-sided 0.00990099
-    ## 2   alt -0.8413738 -4.7378546 two-sided 0.00990099
-    ## 3   slo -0.6719200 -3.6216885 two-sided 0.00990099
-    ## 4   flo  0.7343498  3.7780154 two-sided 0.00990099
-    ## 5    pH -0.1366260 -0.7301397 two-sided 0.63366337
-    ## 6   har  0.4844664  2.5145252 two-sided 0.00990099
-    ## 7   pho  0.4568414  2.6397992 two-sided 0.00990099
-    ## 8   nit  0.7834262  3.7847074 two-sided 0.00990099
-    ## 9   amm  0.4543625  2.2863201 two-sided 0.00990099
-    ## 10  oxy -0.5127452 -2.9321232 two-sided 0.00990099
-    ## 11  bdo  0.3869307  2.1794525 two-sided 0.00990099
-    ## Subsets Pvalue: 5.736472e-21 
+    ## 1   dfs  0.8603563  4.6182042 two-sided 0.00990099
+    ## 2   alt -0.8413738 -4.5498021 two-sided 0.00990099
+    ## 3   slo -0.6719200 -3.7743491 two-sided 0.00990099
+    ## 4   flo  0.7343498  4.1315373 two-sided 0.00990099
+    ## 5    pH -0.1366260 -0.8088944 two-sided 0.42574257
+    ## 6   har  0.4844664  2.8198290 two-sided 0.00990099
+    ## 7   pho  0.4568414  2.4259170 two-sided 0.00990099
+    ## 8   nit  0.7834262  4.3515172 two-sided 0.00990099
+    ## 9   amm  0.4543625  2.4968679 two-sided 0.00990099
+    ## 10  oxy -0.5127452 -2.8885904 two-sided 0.01980198
+    ## 11  bdo  0.3869307  2.0889439 two-sided 0.03960396
+    ## Subsets Pvalue: 3.083354e-20 
     ## other elements: subpvalue call
 
 Second the species marginality were tested for significance following the null hypothesis that the species within a subset is uninfluenced by its subset average habitat conditions (ubiquitous), for WitOMI*G<sub>K</sub>* (Karasiewicz et al., 2017).
@@ -705,35 +705,36 @@ refor[[1]]$witomigtest
     ## Number of tests:   28 
     ## 
     ## Adjustment method for multiple comparisons:   none 
-    ##        Test      Obs     Std.Obs   Alter N.perm     Pvalue  SubniPvalue
-    ## 1      Cogo 4.299120 -0.58074557 greater    100 0.66336634 2.735119e-21
-    ## 2      Satr 4.809033  0.04720326 greater    100 0.47524752 1.959488e-21
-    ## 3      Phph 3.925657 -0.41066447 greater    100 0.66336634 2.735119e-21
-    ## 4      Neba 4.205376 -0.01660352 greater    100 0.44554455 1.837020e-21
-    ## 5      Thth 3.969489 -0.53567986 greater    100 0.65346535 2.694296e-21
-    ## 6      Teso 6.896211  0.31544786 greater    100 0.23762376 9.797439e-22
-    ## 7      Chna      NaN         NaN greater    100         NA           NA
-    ## 8      Chto      NaN         NaN greater    100         NA           NA
-    ## 9      Lele 3.247430 -1.02941888 greater    100 0.86138614 3.551572e-21
-    ## 10     Lece 2.511241 -2.22064182 greater    100 1.00000000 4.123089e-21
-    ## 11     Baba 9.820319  3.08403743 greater    100 0.01980198 8.164533e-23
-    ## 12     Spbi      NaN         NaN greater    100         NA           NA
-    ## 13     Gogo 3.069763 -1.00919103 greater    100 0.83168317 3.429104e-21
-    ## 14     Eslu 5.390231  0.76883842 greater    100 0.24752475 1.020567e-21
-    ## 15     Pefl 6.179629  1.10076076 greater    100 0.15841584 6.531626e-22
-    ## 16     Rham      NaN         NaN greater    100         NA           NA
-    ## 17     Legi      NaN         NaN greater    100         NA           NA
-    ## 18     Scer 6.029779  0.12603564 greater    100 0.35643564 1.469616e-21
-    ## 19     Cyca      NaN         NaN greater    100         NA           NA
-    ## 20     Titi 4.501950 -0.22697841 greater    100 0.51485149 2.122779e-21
-    ## 21     Abbr      NaN         NaN greater    100         NA           NA
-    ## 22     Icme      NaN         NaN greater     99         NA           NA
-    ## 23     Acce      NaN         NaN greater    100         NA           NA
-    ## 24     Ruru 4.960883  0.17399190 greater    100 0.37623762 1.551261e-21
-    ## 25     Blbj      NaN         NaN greater    100         NA           NA
-    ## 26     Alal      NaN         NaN greater    100         NA           NA
-    ## 27     Anan      NaN         NaN greater    100         NA           NA
-    ## 28 OMI.mean 4.921074 -0.20385544 greater    100 0.56435644 2.326892e-21
+    ## Permutation number:   100 
+    ##        Test      Obs    Std.Obs   Alter     Pvalue  SubniPvalue
+    ## 1      Cogo 4.299120 -0.4797155 greater 0.65346535 2.202294e-20
+    ## 2      Satr 4.809033  0.1018531 greater 0.40594059 1.368092e-20
+    ## 3      Phph 3.925657 -0.3729193 greater 0.61386139 2.068822e-20
+    ## 4      Neba 4.205376 -0.1665233 greater 0.60396040 2.035454e-20
+    ## 5      Thth 3.969489 -0.7485319 greater 0.72277228 2.435871e-20
+    ## 6      Teso 6.896211  0.2437952 greater 0.30693069 1.034411e-20
+    ## 7      Chna      NaN        NaN greater         NA           NA
+    ## 8      Chto      NaN        NaN greater         NA           NA
+    ## 9      Lele 3.247430 -1.0826484 greater 0.86138614 2.903024e-20
+    ## 10     Lece 2.511241 -2.0763680 greater 1.00000000 3.370177e-20
+    ## 11     Baba 9.820319  3.6977387 greater 0.00990099 3.336809e-22
+    ## 12     Spbi      NaN        NaN greater         NA           NA
+    ## 13     Gogo 3.069763 -1.0322757 greater 0.91089109 3.069864e-20
+    ## 14     Eslu 5.390231  0.5189888 greater 0.29702970 1.001043e-20
+    ## 15     Pefl 6.179629  0.6771121 greater 0.20792079 7.007299e-21
+    ## 16     Rham      NaN        NaN greater         NA           NA
+    ## 17     Legi      NaN        NaN greater         NA           NA
+    ## 18     Scer 6.029779  0.3948968 greater 0.29702970 1.001043e-20
+    ## 19     Cyca      NaN        NaN greater         NA           NA
+    ## 20     Titi 4.501950  0.1235417 greater 0.39603960 1.334724e-20
+    ## 21     Abbr      NaN        NaN greater         NA           NA
+    ## 22     Icme      NaN        NaN greater         NA           NA
+    ## 23     Acce      NaN        NaN greater         NA           NA
+    ## 24     Ruru 4.960883  0.4021626 greater 0.29702970 1.001043e-20
+    ## 25     Blbj      NaN        NaN greater         NA           NA
+    ## 26     Alal      NaN        NaN greater         NA           NA
+    ## 27     Anan      NaN        NaN greater         NA           NA
+    ## 28 OMI.mean 4.921074 -0.2049249 greater 0.57425743 1.935349e-20
     ## 
     ## other elements: adj.method sub.pvalue subni.pvalue call
 
@@ -748,36 +749,35 @@ refor[[2]]$witomigtest
     ## Number of tests:   28 
     ## 
     ## Adjustment method for multiple comparisons:   none 
-    ## Permutation number:   100 
-    ##        Test      Obs     Std.Obs   Alter    Pvalue  SubniPvalue
-    ## 1      Cogo 1.126400 -0.74918278 greater 1.0000000 1.057662e-20
-    ## 2      Satr 1.495458 -1.40505188 greater 0.9801980 1.036718e-20
-    ## 3      Phph 1.482589 -1.89271634 greater 1.0000000 1.057662e-20
-    ## 4      Neba 1.459884 -2.11353379 greater 1.0000000 1.057662e-20
-    ## 5      Thth 3.615121 -0.50678299 greater 0.6831683 7.225612e-21
-    ## 6      Teso 1.256070 -0.87160078 greater 1.0000000 1.057662e-20
-    ## 7      Chna 3.003663 -0.76377319 greater 0.7722772 8.168083e-21
-    ## 8      Chto 2.022893 -1.08342192 greater 0.8910891 9.424711e-21
-    ## 9      Lele 2.687707 -0.97728721 greater 0.9306931 9.843587e-21
-    ## 10     Lece 3.866684 -0.49512973 greater 0.6732673 7.120893e-21
-    ## 11     Baba 3.216743 -0.64348363 greater 0.7920792 8.377521e-21
-    ## 12     Spbi 3.648142 -0.44031246 greater 0.6039604 6.387860e-21
-    ## 13     Gogo 3.956758 -0.36435106 greater 0.5544554 5.864264e-21
-    ## 14     Eslu 4.937736  0.07575571 greater 0.4059406 4.293479e-21
-    ## 15     Pefl 4.018942 -0.30575656 greater 0.5742574 6.073702e-21
-    ## 16     Rham 4.906593 -0.10462045 greater 0.4455446 4.712355e-21
-    ## 17     Legi 4.825299 -0.07156057 greater 0.4158416 4.398198e-21
-    ## 18     Scer 6.155192 -0.04669909 greater 0.3663366 3.874603e-21
-    ## 19     Cyca 5.221118 -0.16612895 greater 0.4356436 4.607636e-21
-    ## 20     Titi 4.169011 -0.30130592 greater 0.5445545 5.759545e-21
-    ## 21     Abbr 5.804330 -0.15713785 greater 0.4653465 4.921793e-21
-    ## 22     Icme 8.468354  0.25151290 greater 0.2871287 3.036851e-21
-    ## 23     Acce 5.795305  0.03643748 greater 0.4257426 4.502917e-21
-    ## 24     Ruru 3.920043 -0.43815121 greater 0.6039604 6.387860e-21
-    ## 25     Blbj 5.698468 -0.18189039 greater 0.4356436 4.607636e-21
-    ## 26     Alal 4.984645  0.18839853 greater 0.3366337 3.560446e-21
-    ## 27     Anan 5.795413 -0.12359602 greater 0.4455446 4.712355e-21
-    ## 28 OMI.mean 3.982910 -2.00880358 greater 1.0000000 1.057662e-20
+    ##        Test      Obs      Std.Obs   Alter N.perm    Pvalue  SubniPvalue
+    ## 1      Cogo 1.126400 -0.847993049 greater    100 1.0000000 1.054077e-19
+    ## 2      Satr 1.495458 -1.656416780 greater    100 1.0000000 1.054077e-19
+    ## 3      Phph 1.482589 -1.914492198 greater    100 0.9900990 1.043640e-19
+    ## 4      Neba 1.459884 -2.184671273 greater    100 1.0000000 1.054077e-19
+    ## 5      Thth 3.615121 -0.562734987 greater    100 0.6039604 6.366206e-20
+    ## 6      Teso 1.256070 -0.867823951 greater    100 0.9405941 9.914583e-20
+    ## 7      Chna 3.003663 -0.790086489 greater    100 0.8316832 8.766578e-20
+    ## 8      Chto 2.022893 -0.856164570 greater    100 0.9306931 9.810219e-20
+    ## 9      Lele 2.687707 -1.049134899 greater    100 0.9306931 9.810219e-20
+    ## 10     Lece 3.866684 -0.363414723 greater    100 0.6039604 6.366206e-20
+    ## 11     Baba 3.216743 -0.567872853 greater    100 0.6831683 7.201118e-20
+    ## 12     Spbi 3.648142 -0.451760319 greater    100 0.6039604 6.366206e-20
+    ## 13     Gogo 3.956758 -0.475981575 greater    100 0.6534653 6.888026e-20
+    ## 14     Eslu 4.937736  0.125899966 greater    100 0.4059406 4.278925e-20
+    ## 15     Pefl 4.018942 -0.419662467 greater    100 0.6039604 6.366206e-20
+    ## 16     Rham 4.906593 -0.249083098 greater    100 0.5049505 5.322565e-20
+    ## 17     Legi 4.825299 -0.180668831 greater    100 0.4356436 4.592017e-20
+    ## 18     Scer 6.155192  0.129548254 greater    100 0.3267327 3.444013e-20
+    ## 19     Cyca 5.221118 -0.104250894 greater    100 0.4554455 4.800745e-20
+    ## 20     Titi 4.169011 -0.348335832 greater    100 0.5940594 6.261842e-20
+    ## 21     Abbr 5.804330 -0.082686983 greater     99 0.3500000 3.689268e-20
+    ## 22     Icme 8.468354  0.045716532 greater    100 0.3762376 3.965833e-20
+    ## 23     Acce 5.795305  0.133893196 greater    100 0.2970297 3.130921e-20
+    ## 24     Ruru 3.920043 -0.473416613 greater    100 0.6237624 6.574934e-20
+    ## 25     Blbj 5.698468 -0.002604356 greater    100 0.3465347 3.652741e-20
+    ## 26     Alal 4.984645  0.094990529 greater    100 0.3762376 3.965833e-20
+    ## 27     Anan 5.795413 -0.012767457 greater    100 0.4059406 4.278925e-20
+    ## 28 OMI.mean 3.982910 -2.036166832 greater    100 0.9801980 1.033204e-19
     ## 
     ## other elements: adj.method sub.pvalue subni.pvalue call
 
@@ -787,6 +787,8 @@ Reference
 Dolédec, S., Chessel, D., Gimaret-Carpentier, C., 2000. Niche separation in community analysis: A new method. Ecology 81, 2914. doi:[doi:10.1890/0012-9658(2000)081\[2914:NSICAA\]2.0.CO;2](https://doi.org/doi:10.1890/0012-9658(2000)081[2914:NSICAA]2.0.CO;2)
 
 Dray, S., Dufour, A., 2007. The ade4 package: Implementing the duality diagram for ecologists. Journal of Statistical Software 22, 1–20.
+
+Karasiewicz, S., 2017. Subniche: Within outlying mean indexes: Refining the omi analysis. doi:[https://zenodo.org/badge/DOI/10.5281/zenodo.438723.svg](https://doi.org/https://zenodo.org/badge/DOI/10.5281/zenodo.438723.svg)
 
 Karasiewicz, S., Dolédec, S., Lefebvre, S., 2017. Within outlying mean indexes: Refining the omi analysis for the realized niche decomposition. PeerJ Preprints. doi:[https://doi.org/10.7287/peerj.preprints.2810v1](https://doi.org/https://doi.org/10.7287/peerj.preprints.2810v1)
 

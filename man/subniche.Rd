@@ -13,6 +13,8 @@
 \alias{rtestrefor}
 \alias{subparam.subor}
 \alias{rtestsubor}
+\alias{print.subkrandtest}
+\alias{print.subnikrandtest}
 \alias{print.subniche}
 \alias{plot.subniche}
 \alias{margvect}
@@ -24,17 +26,23 @@
 \alias{rtestrefor}
 \alias{subparam.subor}
 \alias{rtestsubor}
-\title{The Within Outlying Mean Indexes}
+\alias{subkrandtest}
+\alias{subnikrandtest}
+\title{The Within Outlying Mean Indexes calculation}
 \usage{
 subniche(nic, factor)
+
+\method{print}{subkrandtest}(x, ...)
+
+\method{print}{subnikrandtest}(x, ...)
 
 \method{print}{subniche}(x, ...)
 
 \method{plot}{subniche}(x, xax = 1, yax = 2, ...)
 
-margvect(x, xax = 1, yax = 2, ...)
+margvect(x, xax = 1, yax = 2, colo = NULL, ...)
 
-subplot(x, xax = 1, yax = 2, ...)
+subplot(x, xax = 1, yax = 2, colo = NULL, ...)
 
 \method{summary}{subniche}(object, ...)
 
@@ -49,6 +57,12 @@ rtestrefor(x, nrepet)
 subparam.subor(x)
 
 rtestsubor(x, nrepet)
+
+subkrandtest(sim, obs, alter = "greater", call = match.call(),
+  names = colnames(sim), p.adjust.method = "none")
+
+subnikrandtest(sim, obs, alter = "greater", subpvalue, call = match.call(),
+  names = colnames(sim), p.adjust.method = "none")
 }
 \arguments{
 \item{nic}{an object of class \code{niche}.}
@@ -63,53 +77,66 @@ rtestsubor(x, nrepet)
 
 \item{yax}{specify the y column in your matrix}
 
+\item{colo}{string of character specifying the subsets color}
+
 \item{object}{an object of class \code{subniche}.}
 
 \item{xtest}{an object of class \code{subniche}.}
 
 \item{nrepet}{the number of permutations for the testing procedure}
+
+\item{sim}{a numeric vector of simulated values}
+
+\item{obs}{a numeric vector of an observed value}
+
+\item{alter}{a character string specifying the alternative hypothesis, must be one of "greater" (default), "less" or "two-sided"}
+
+\item{call}{a call order}
+
+\item{names}{a vector of names for tests}
+
+\item{p.adjust.method}{a string indicating a method for multiple adjustment, see p.adjust.methods for possible choices.}
+
+\item{subpvalue}{the subset pvalue resulting from subkrandtest function}
 }
 \value{
 Adds items in the niche list and changing the class into \code{subniche} containing:
 
-\code{factor} the factor use to divide the environmental and species matrix into subset.
+\code{factor} the factor use to divide the environmental and species matrix into submatrices.
 
-\code{mav} a data frame with the subset origins, \emph{G_k}.
+\code{G_k} a dataframe with the sub-origins, \emph{G_k}.
 
-\code{mus} a data frame with the subset species niche coordinates
+\code{sub} a dataframe with the species subniche coordinates
 }
 \description{
-The method allows to divide the realized niche, estimated from the \link[ade4]{niche} function in the \link{ade4} package into subniches defined by a factor, which creates the
+The indexes allows to divide the niche, estimated from the \link[ade4]{niche} function in the \link{ade4} package into subniches defined by a factor, which creates the
 subsets. See details for more information.
 }
 \details{
-The Within Outlying Mean Indexes are statistical exploratory niche method which provides observation of niche shift and/or conservatism, of an entire community,at different subset
-(temporal and/or spatial) and comparable under the same environmental gradients. This hindcasting multivariate analysis is based on the OMI analysis (Doledec \emph{et al.} 2000) which is used as reference.
-The niches refinement is inspired by the K-select (Calenge \emph{et al.} 2005) which emphasizes the limiting factors in habitat used.The different estimations should help understand:
+The Within Outlying Mean Index analysis is a statistical exploratory niche analysis which provides observation of niche shift and/or conservatism, of an entire community,at different subcales
+(temporal ,spatial and/or finer biological organisation level), and comparable under the same environmental gradients. This hindcasting multivariate analysis is based on the OMI analysis (Doledec \emph{et al.} 2000) which is used as reference.
+The niches refinement is inspired by the K-select (Calenge \emph{et al.} 2005) which emphasizes the limiting factors in habitat use in design II and III (Thomas and Taylor, 1990).The different estimations should help understand:
 
-1. the environmental factors defining a species' reference niche, over the sampling domain within a community.
+1. the environmental factors defining a species' reference niche, under on the full scale, within a community.
 
 2. the environmental factors defining a species' subniches, under each subsets, within a community.
 
-3.the observation of the biological constraint exerted on the species subniche.
-
-The subniches parameters can be calculated from both the reference origin,\emph{G}, which corresponds to the reference plane origin, and from \emph{G_k}, which corresponds to the
-suborigins. \emph{G} is the graphical representation of the average habitat conditions of the sampling domain. \emph{G_k} is the average habitat conditions of the subset defined by the factor. They are complementary has you can compare:
+The subniches parameters can be calculated from both the reference origin,\emph{G}, which corresponds to the reference plan origin, and from \emph{G_k}, which corresponds to the
+suborigins. \emph{G} is the graphical representation of the mean environmental conditions encountered over the full scale of the data. \emph{G_k} is the mean environmental conditions
+encountered at a subset defined by the factor. They are complementary has you can compare:
 
 1. a single species' subniches to \emph{G}.
 
 2. the community' subniches to \emph{G_k} at a specific subset.
 
-3.the difference between the potential subniche and the subniche correspond to the observe biological constraint (Karasiewicz \emph{et al.}, in review) .
-
  The subniches of a single species can only be compared to \emph{G} as it is the common origin to all subsets. Whereas \emph{G_k} is only common to the species found within the
 subset. So comparing different subniches of one species, found within different subsets, is only relevant to \emph{G}. The community's subniches can be compared to both \emph{G}
-and \emph{G_k}, but \emph{G}, being the overall average habitat conditions, will not express the specificity of the environmental conditions that the species
-encountered at the subscale. \emph{G_k}, being the average subset habitat conditions, will reflect the atypical value of the habitat conditions, making the
-comparison of the community's subniches parameters more relevant. The observation the biological constraint on a species subniche can be use for further analysis and interpretation.
+and \emph{G_k}, but \emph{G}, being the mean environmental conditions found within the full scale, will not express the specificity of the environmental conditions that the species
+encountered at the subset. \emph{G_k}, being the mean environmental conditions of the subset, will reflect the atypical value of the environmental condition, making the
+comparison of the community's subniches parameters more relevant.
 }
 \examples{
-library(ade4)
+library(subniche)
 data(doubs)
 dudi1 <- dudi.pca(doubs$env, scale = TRUE, scan = FALSE, nf = 3)
 nic1 <- niche(dudi1, doubs$fish, scann = FALSE)
@@ -124,7 +151,7 @@ plot(nic1)
 plot(subnic1)
 #Display the marginality vector of the suborigins and the species subniche
 margvect(subnic1)
-#Display the subset's chull, found within the overall environment's chull,
+#Display the subset's polygon, found within the overall environment's chull,
 #and the corresponding species positions
 subplot(subnic1)
 # The following two functions do the same display, refparam is adapted to subniche objects
@@ -145,9 +172,7 @@ Doledec S., Chessel D. and Gimaret C. (2000). Niche separation in community anal
 
 Calenge C., Dufour A.B. and Maillard D. (2005). K-select analysis: a new method to analyse habitat selection in radio-tracking studies. \emph{Ecological modelling}, \bold{186}, 143-153.
 
-Thomas D.L., Taylor E.J., (1990). Study designs and tests for comparing resource use and availability.\emph{ J. Wildl. Manage.}, \bold{54}, 322-330.
-
-Karasiewicz S.,Doledec S.and Lefebvre S. (in review). Within Outlying Mean Indexes: refining the OMI analysis for the realized niche decomposition.
+Karasiewicz S.,Doledec S.and Lefebvre S. (submitted). Within outlying mean indexes: refining the OMI analysis for the realized niche decomposition.
 }
 \seealso{
 \link[ade4]{niche} \link[ade4]{niche.param}
