@@ -9,7 +9,7 @@ How to get started
 Install and load the R package from [CRAN](https://cran.r-project.org/) using the following commands on the R console:
 
 ``` r
-#install.packages("subniche")
+install.packages("subniche")
 library(subniche)
 ```
 
@@ -18,8 +18,8 @@ library(subniche)
 \` To install the most recent version from GitHub:
 
 ``` r
-#install.packages("devtools")
-#devtools::install_github("polak51/WitOMI")
+install.packages("devtools")
+devtools::install_github("KarasiewiczStephane/WitOMI")
 library("subniche")
 ```
 
