@@ -89,15 +89,15 @@ subnikrandtest(sim, obs, alter = "greater", subpvalue, call = match.call(),
 
 \item{obs}{a numeric vector of an observed value}
 
-\item{alter}{a character string specifying the alternative hypothesis, must be one of "greater" (default), "less" or "two-sided"}
+\item{alter}{a character string specifying the alternative hypothesis, must be one of "greater" (default), "less" or "two-sided".he length must be equal to the length of the vector obs, values are recycled if shorter.}
 
 \item{call}{a call order}
 
 \item{names}{a vector of names for tests}
 
-\item{p.adjust.method}{a string indicating a method for multiple adjustment, see p.adjust.methods for possible choices.}
+\item{p.adjust.method}{a string indicating a method for multiple adjustment, see \link[stats]{p.adjust.methods} for possible choices.}
 
-\item{subpvalue}{the subset pvalue resulting from subkrandtest function}
+\item{subpvalue}{the subset pvalue resulting from \code{subkrandtest} function}
 }
 \value{
 Adds items in the niche list and changing the class into \code{subniche} containing:
@@ -134,6 +134,8 @@ subset. So comparing different subniches of one species, found within different 
 and \emph{G_k}, but \emph{G}, being the mean environmental conditions found within the full scale, will not express the specificity of the environmental conditions that the species
 encountered at the subset. \emph{G_k}, being the mean environmental conditions of the subset, will reflect the atypical value of the environmental condition, making the
 comparison of the community's subniches parameters more relevant.
+
+For more details description on the package use:\url{https://github.com/KarasiewiczStephane/WitOMI}.
 }
 \examples{
 library(subniche)

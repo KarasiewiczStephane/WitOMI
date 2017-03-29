@@ -15,10 +15,10 @@
 #' @param ...	further arguments passed to or from other methods
 #' @param sim a numeric vector of simulated values
 #' @param obs a numeric vector of an observed value
-#' @param alter a character string specifying the alternative hypothesis, must be one of "greater" (default), "less" or "two-sided"
+#' @param alter a character string specifying the alternative hypothesis, must be one of "greater" (default), "less" or "two-sided".he length must be equal to the length of the vector obs, values are recycled if shorter.
 #' @param names a vector of names for tests
-#' @param subpvalue the subset pvalue resulting from subkrandtest function
-#' @param p.adjust.method	a string indicating a method for multiple adjustment, see p.adjust.methods for possible choices.
+#' @param subpvalue the subset pvalue resulting from \code{subkrandtest} function
+#' @param p.adjust.method	a string indicating a method for multiple adjustment, see \link[stats]{p.adjust.methods} for possible choices.
 #' @param call a call order
 #' @param nrepet the number of permutations for the testing procedure
 #' @return Adds items in the niche list and changing the class into \code{subniche} containing:
@@ -48,6 +48,9 @@
 #' and \emph{G_k}, but \emph{G}, being the mean environmental conditions found within the full scale, will not express the specificity of the environmental conditions that the species
 #' encountered at the subset. \emph{G_k}, being the mean environmental conditions of the subset, will reflect the atypical value of the environmental condition, making the
 #' comparison of the community's subniches parameters more relevant.
+#'
+#' For more details description on the package use:\url{https://github.com/KarasiewiczStephane/WitOMI}.
+#'
 #' @references Doledec S., Chessel D. and Gimaret C. (2000). Niche separation in community analysis: a new method. \emph{Ecology},\bold{81}, 2914-1927.
 #'
 #' Calenge C., Dufour A.B. and Maillard D. (2005). K-select analysis: a new method to analyse habitat selection in radio-tracking studies. \emph{Ecological modelling}, \bold{186}, 143-153.
@@ -55,7 +58,7 @@
 #' Karasiewicz S.,Doledec S.and Lefebvre S. (submitted). Within outlying mean indexes: refining the OMI analysis for the realized niche decomposition.
 #' @seealso \link[ade4]{niche} \link[ade4]{niche.param}
 #' @examples
-#' library(subniche)
+#'library(subniche)
 #'data(doubs)
 #'dudi1 <- dudi.pca(doubs$env, scale = TRUE, scan = FALSE, nf = 3)
 #'nic1 <- niche(dudi1, doubs$fish, scann = FALSE)
