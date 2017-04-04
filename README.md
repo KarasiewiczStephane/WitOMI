@@ -1,7 +1,17 @@
-Subniche Documentation for the Within Outlying Mean Indexes calculations (WitOMI)
-================
 
-[subniche](https://cran.r-project.org/web/packages/subniche/index.html) is an open-source R (R Core Team, 2017) package that implements functions useful for the calculation of the Within Outlying Mean Indexes (WitOMI) and their respective statistical tests (Karasiewicz, 2017; Karasiewicz et al., 2017).. It consists of complementary calculations to the Outlying Mean Index analysis (OMI) (Dolédec et al., 2000). OMI analysis can be implemented with the `niche` function from the [ade4](https://cran.r-project.org/web/packages/ade4/index.html) package (Dray and Dufour, 2007). WitOMI analysis enables to explore niche shift in a community and environmental constraints within an Euclidean space, with graphical displays. The method allows to divide the realized niche, estimated from the `niche` function into subniches defined by a factor (time, space), which creates the subsets of habitat conditions.
+------------------------------------------------------------------------
+
+title: Subniche Documentation for the Within Outlying Mean Indexes calculations (WitOMI)
+
+output: github\_document
+
+bibliography: sub.bib
+
+csl: elsevier-harvard.csl
+
+------------------------------------------------------------------------
+
+[subniche](https://cran.r-project.org/web/packages/subniche/index.html) is an open-source R (R Core Team 2017) package that implements functions useful for the calculation of the Within Outlying Mean Indexes (WitOMI) and their respective statistical tests (Stéphane Karasiewicz, Dolédec, and Lefebvre 2017; Stephane Karasiewicz 2017). It consists of complementary calculations to the Outlying Mean Index analysis (OMI) (Dolédec, Chessel, and Gimaret-Carpentier 2000). OMI analysis can be implemented with the `niche` function from the [ade4](https://cran.r-project.org/web/packages/ade4/index.html) package (Dray and Dufour 2007). WitOMI analysis enables to explore niche shift in a community and environmental constraints within an Euclidean space, with graphical displays. The method allows to divide the realized niche, estimated from the `niche` function into subniches defined by a factor (time, space), which creates the subsets of habitat conditions.
 
 How to get started
 ------------------
@@ -9,26 +19,29 @@ How to get started
 Install and load the R package from [CRAN](https://cran.r-project.org/) using the following commands on the R console:
 
 ``` r
-install.packages("subniche")
+#install.packages("subniche")
+
 library(subniche)
 ```
 
     ## Loading required package: ade4
 
-\` To install the most recent version from GitHub:
+\`
+
+To install the most recent version from GitHub:
 
 ``` r
-install.packages("devtools")
-devtools::install_github("KarasiewiczStephane/WitOMI")
-library("subniche")
-install.packages("knitr")
-library(knitr)
+#install.packages("devtools")
+
+#devtools::install_github("KarasiewiczStephane/WitOMI")
+
+#library("subniche")
 ```
 
 Generate the data required to run this example
 ----------------------------------------------
 
-Get the data set “doubs” from the [ade4](https://cran.r-project.org/web/packages/ade4/index.html) package (Dray and Dufour, 2007). This data set includes, fish species abundances along with environmental variables, and spatial coordinates for 30 sites.
+Get the data set “doubs” from the [ade4](https://cran.r-project.org/web/packages/ade4/index.html) package (Dray and Dufour 2007). This data set includes, fish species abundances along with environmental variables, and spatial coordinates for 30 sites.
 
 ``` r
 data(doubs)
@@ -41,16 +54,15 @@ The first step consists of performing a PCA on the environmental table.
 
 ``` r
 dudi1 <- dudi.pca(doubs$env, scale = TRUE, scan = FALSE, nf = 3)
+
 scatter(dudi1)
 ```
 
 ![](README_files/figure-markdown_github/unnamed-chunk-4-1.png)
 
-The graph display the correlation between the different environmental variables. Next the OMI analysis uses the standardized environmental table from the PCA in combination with the faunistic data to performed the OMI analysis. The standardized environmental table can be extracted from the `dudi1` with `$tab` as follow:
+The graph display the correlation between the different environmental variables. Next the OMI analysis uses the standardized environmental table from the PCA in combination with the faunistic data to performed the OMI analysis.
 
-``` r
-dudi1$tab
-```
+The standardized environmental table can be extracted from the `dudi1` with `$tab` as follow:
 
 |         dfs|         alt|         slo|         flo|          pH|         har|         pho|         nit|         amm|         oxy|         bdo|
 |-----------:|-----------:|-----------:|-----------:|-----------:|-----------:|-----------:|-----------:|-----------:|-----------:|-----------:|
@@ -85,10 +97,11 @@ dudi1$tab
 |   1.7049569|  -1.1187086|  -0.7641788|   2.5564677|  -1.4638501|   1.4413378|  -0.1249448|  -0.0244671|  -0.2933679|  -0.1790782|  -0.2412833|
 |   1.9307339|  -1.1599341|  -1.5615582|   2.6295112|   0.8783101|   1.3810308|   0.1071508|  -0.0388595|  -0.2933679|  -0.5464180|  -0.1886397|
 
-The next step is to perform the OMI analysis from Dolédec et al. (2000) by implementing the function `niche` from the [ade4](https://cran.r-project.org/web/packages/ade4/index.html) package (Dray and Dufour, 2007).
+The next step is to perform the OMI analysis from Dolédec, Chessel, and Gimaret-Carpentier (2000) by implementing the function `niche` from the [ade4](https://cran.r-project.org/web/packages/ade4/index.html) package (Dray and Dufour 2007).
 
 ``` r
 nic1 <- niche(dudi1, doubs$fish, scann = FALSE)
+
 nic1
 ```
 
@@ -122,7 +135,11 @@ plot(nic1)
 
 ![](README_files/figure-markdown_github/unnamed-chunk-6-1.png)
 
-The graph display the results of the OMI analysis within a two-dimensional Euclidean space. Its display the species niche position (labels in Samples and Species, top-right) and breadth (ellipses in Niches, bottom-right graph), within the environmental gradients (summarized by Variables). The species niche parameter (Inertia, OMI, Tol and Rtol) are calculated with the `niche.parameter` function from the [ade4](https://cran.r-project.org/web/packages/ade4/index.html) package (Dray and Dufour, 2007). More details on the niche parameters calculation in Dolédec et al. (2000).
+The graph display the results of the OMI analysis within a two-dimensional Euclidean space. Its display the species niche position (labels in Samples and Species, top-right) and breadth (ellipses in Niches, bottom-right graph), within the
+
+environmental gradients (summarized by Variables).
+
+The species niche parameter (Inertia, OMI, Tol and Rtol) are calculated with the `niche.parameter` function from the [ade4](https://cran.r-project.org/web/packages/ade4/index.html) package (Dray and Dufour 2007). More details on the niche parameters' calculation in Dolédec, Chessel, and Gimaret-Carpentier (2000).
 
 ``` r
 kable(niche.param(nic1))
@@ -158,13 +175,13 @@ kable(niche.param(nic1))
 | Alal |  12.048146|  4.9846448|  1.7027475|  5.360754|  41.4|  14.1|  44.5|
 | Anan |   9.645091|  5.7954132|  1.3592329|  2.490445|  60.1|  14.1|  25.8|
 
-The test for statistical significance can now be implemented, which correspond to the comparison between the observe species' marginality and the simulated values, hereafter 100 random permutations, under the null hypothesis that the species is indifferent to its environment (Dolédec et al., 2000).
+The test for statistical significance can now be implemented
 
 ``` r
 rtest(nic1,100)
 ```
 
-    ## class: krandtest 
+    ## class: krandtest lightkrandtest 
     ## Monte-Carlo tests
     ## Call: as.krandtest(sim = t(sim), obs = obs)
     ## 
@@ -173,53 +190,55 @@ rtest(nic1,100)
     ## Adjustment method for multiple comparisons:   none 
     ## Permutation number:   100 
     ##        Test       Obs    Std.Obs   Alter     Pvalue
-    ## 1      Cogo 2.6560006  2.4339201 greater 0.02970297
-    ## 2      Satr 3.5242789  8.3403331 greater 0.00990099
-    ## 3      Phph 2.0454327  8.2118815 greater 0.00990099
-    ## 4      Neba 1.3244021  8.4938562 greater 0.00990099
-    ## 5      Thth 2.6687690  1.3393932 greater 0.10891089
-    ## 6      Teso 2.0966432  0.6276960 greater 0.15841584
-    ## 7      Chna 3.0036630  4.0389437 greater 0.00990099
-    ## 8      Chto 2.0228932  3.0570521 greater 0.01980198
-    ## 9      Lele 0.5832650  0.5775228 greater 0.27722772
-    ## 10     Lece 0.6959801  4.4226374 greater 0.00990099
-    ## 11     Baba 2.8240029  6.1547121 greater 0.00990099
-    ## 12     Spbi 3.6481419  3.4819985 greater 0.02970297
-    ## 13     Gogo 2.2051499  7.8982473 greater 0.00990099
-    ## 14     Eslu 1.5285287  1.8204098 greater 0.08910891
-    ## 15     Pefl 1.4293101  1.4366071 greater 0.10891089
-    ## 16     Rham 4.9065929  5.6657582 greater 0.00990099
-    ## 17     Legi 4.8252988  7.5866169 greater 0.00990099
-    ## 18     Scer 4.2331196  4.9142159 greater 0.00990099
-    ## 19     Cyca 5.2211179  5.4052274 greater 0.00990099
-    ## 20     Titi 1.8106553  3.4837953 greater 0.00990099
-    ## 21     Abbr 5.8043296  6.3739635 greater 0.00990099
-    ## 22     Icme 8.4683537  4.1672182 greater 0.01980198
-    ## 23     Acce 5.7953055  8.8773231 greater 0.00990099
-    ## 24     Ruru 1.9475787  3.9677957 greater 0.00990099
-    ## 25     Blbj 5.6984685  5.7319274 greater 0.00990099
-    ## 26     Alal 4.9846448 13.0491652 greater 0.00990099
-    ## 27     Anan 5.7954132  7.6148838 greater 0.00990099
-    ## 28 OMI.mean 3.3980496 21.1256526 greater 0.00990099
-    ## 
-    ## other elements: adj.method call
+    ## 1      Cogo 2.6560006  1.2446239 greater 0.11881188
+    ## 2      Satr 3.5242789  7.8873003 greater 0.00990099
+    ## 3      Phph 2.0454327  8.6142797 greater 0.00990099
+    ## 4      Neba 1.3244021  6.1631463 greater 0.00990099
+    ## 5      Thth 2.6687690  0.8650756 greater 0.12871287
+    ## 6      Teso 2.0966432  0.1997600 greater 0.29702970
+    ## 7      Chna 3.0036630  4.4515789 greater 0.00990099
+    ## 8      Chto 2.0228932  1.6876171 greater 0.09900990
+    ## 9      Lele 0.5832650  0.6748896 greater 0.18811881
+    ## 10     Lece 0.6959801  2.9494626 greater 0.03960396
+    ## 11     Baba 2.8240029  5.9892641 greater 0.00990099
+    ## 12     Spbi 3.6481419  3.8732284 greater 0.01980198
+    ## 13     Gogo 2.2051499  6.2569064 greater 0.00990099
+    ## 14     Eslu 1.5285287  2.9324912 greater 0.02970297
+    ## 15     Pefl 1.4293101  1.5808521 greater 0.08910891
+    ## 16     Rham 4.9065929  6.3098905 greater 0.00990099
+    ## 17     Legi 4.8252988  5.9371276 greater 0.00990099
+    ## 18     Scer 4.2331196  3.8455837 greater 0.00990099
+    ## 19     Cyca 5.2211179  6.0752971 greater 0.00990099
+    ## 20     Titi 1.8106553  2.6081776 greater 0.04950495
+    ## 21     Abbr 5.8043296  5.2906326 greater 0.00990099
+    ## 22     Icme 8.4683537  4.7054978 greater 0.00990099
+    ## 23     Acce 5.7953055  6.4142400 greater 0.00990099
+    ## 24     Ruru 1.9475787  4.9006995 greater 0.01980198
+    ## 25     Blbj 5.6984685  5.5978404 greater 0.01980198
+    ## 26     Alal 4.9846448 11.6028253 greater 0.00990099
+    ## 27     Anan 5.7954132  5.0361636 greater 0.01980198
+    ## 28 OMI.mean 3.3980496 18.0686158 greater 0.00990099
 
 Subsets creation
 ----------------
 
-Herein, for the sake of the example, we will simply create two subsets. A `factor` needs to be made, in order to divide the data in two subsets. The first environmental variable, `doubs$env[,1]`,being the distance from the source ("dfs") and sorted in increasing order, will determine the spatial factor dividing the realized niche into subniches.
+Herein, for the sake of the example, we will simply create two subsets. A `factor` needs to be made, in order to divide the data in two subsets. The first environmental variable, `doubs$env[,1]`,being the distance from the source ("dfs"") and sorted in increasing order, will determine the spatial factor dividing the realized into subniches.
 
 ``` r
 N <- dim(nic1$ls)[1]
+
 # N, is equal to the number of lines in the data.
+
 fact <- factor(c(rep(1,N/2),rep(2,N/2)))
+
 #Creates a factor which defines the subsets
 ```
 
-Now that we have the factor for dividing the niche, the [subniche](https://cran.r-project.org/web/packages/subniche/index.html) function can be implemented as follow:
+Now that we have the factor for dividing the niche, the [subniche](https://cran.r-project.org/web/packages/subniche/index.html) function an be implemented as follow:
 
 ``` r
 subnic1 <- subniche(nic1, fact)
+
 subnic1
 ```
 
@@ -250,7 +269,7 @@ subnic1
     ## 8 $G_k       2    2    G_k coordinates                        
     ## 9 $sub       54   2    species coordinates within each subset
 
-The [subniche](https://cran.r-project.org/web/packages/subniche/index.html) function only adds `items`to the `niche` list, which are `$factor`, `$G_k` and `$sub`. The function does not change the previous results obtained with the OMI analysis from the `niche` function. The following functions, `plot`, `refparam` and `rtest`, are used to display the same results as in the `ade4` package:
+The [subniche](https://cran.r-project.org/web/packages/subniche/index.html) function only add `items`to the `niche` list, which are `$factor`, `$G_k` and `$sub`(Stephane Karasiewicz 2017). The function does not change the results of the OMI analysis from the `niche` function The folowing functions, `plot`, `refparam` and `rtest`, are used to display the same results as in the `ade4` package:
 
 ``` r
 plot(subnic1)
@@ -298,7 +317,7 @@ kable(refparam(subnic1))
 rtest(subnic1)
 ```
 
-    ## class: krandtest 
+    ## class: krandtest lightkrandtest 
     ## Monte-Carlo tests
     ## Call: as.krandtest(sim = t(sim), obs = obs)
     ## 
@@ -307,41 +326,39 @@ rtest(subnic1)
     ## Adjustment method for multiple comparisons:   none 
     ## Permutation number:   99 
     ##        Test       Obs    Std.Obs   Alter Pvalue
-    ## 1      Cogo 2.6560006  1.7873414 greater   0.07
-    ## 2      Satr 3.5242789  8.3474355 greater   0.01
-    ## 3      Phph 2.0454327  8.0491229 greater   0.01
-    ## 4      Neba 1.3244021  5.1510829 greater   0.01
-    ## 5      Thth 2.6687690  0.6083606 greater   0.23
-    ## 6      Teso 2.0966432  0.5122225 greater   0.15
-    ## 7      Chna 3.0036630  3.8884411 greater   0.01
-    ## 8      Chto 2.0228932  1.8139415 greater   0.06
-    ## 9      Lele 0.5832650  0.6728967 greater   0.21
-    ## 10     Lece 0.6959801  3.5634387 greater   0.02
-    ## 11     Baba 2.8240029  5.7081239 greater   0.01
-    ## 12     Spbi 3.6481419  3.9415895 greater   0.02
-    ## 13     Gogo 2.2051499  6.1740244 greater   0.01
-    ## 14     Eslu 1.5285287  3.4098750 greater   0.01
-    ## 15     Pefl 1.4293101  1.8457378 greater   0.07
-    ## 16     Rham 4.9065929  7.2969264 greater   0.01
-    ## 17     Legi 4.8252988  4.6604150 greater   0.02
-    ## 18     Scer 4.2331196  3.3488014 greater   0.04
-    ## 19     Cyca 5.2211179  5.0166369 greater   0.02
-    ## 20     Titi 1.8106553  2.3862846 greater   0.04
-    ## 21     Abbr 5.8043296  5.0589257 greater   0.01
-    ## 22     Icme 8.4683537  5.8326111 greater   0.01
-    ## 23     Acce 5.7953055  6.7553329 greater   0.01
-    ## 24     Ruru 1.9475787  4.8578089 greater   0.02
-    ## 25     Blbj 5.6984685  6.6631860 greater   0.01
-    ## 26     Alal 4.9846448  9.7759140 greater   0.01
-    ## 27     Anan 5.7954132  9.2389494 greater   0.01
-    ## 28 OMI.mean 3.3980496 22.1291059 greater   0.01
-    ## 
-    ## other elements: adj.method call
+    ## 1      Cogo 2.6560006  1.5356327 greater   0.12
+    ## 2      Satr 3.5242789  8.6044148 greater   0.01
+    ## 3      Phph 2.0454327  7.1606552 greater   0.01
+    ## 4      Neba 1.3244021  5.8926609 greater   0.01
+    ## 5      Thth 2.6687690  0.8538976 greater   0.17
+    ## 6      Teso 2.0966432  0.3712566 greater   0.28
+    ## 7      Chna 3.0036630  4.3918939 greater   0.02
+    ## 8      Chto 2.0228932  2.2620567 greater   0.04
+    ## 9      Lele 0.5832650  0.5002636 greater   0.28
+    ## 10     Lece 0.6959801  4.5948975 greater   0.01
+    ## 11     Baba 2.8240029  5.4743359 greater   0.01
+    ## 12     Spbi 3.6481419  6.1735117 greater   0.01
+    ## 13     Gogo 2.2051499  6.3528536 greater   0.01
+    ## 14     Eslu 1.5285287  2.2631337 greater   0.06
+    ## 15     Pefl 1.4293101  2.0399162 greater   0.05
+    ## 16     Rham 4.9065929  7.5226004 greater   0.01
+    ## 17     Legi 4.8252988  8.3610463 greater   0.01
+    ## 18     Scer 4.2331196  3.3440774 greater   0.02
+    ## 19     Cyca 5.2211179  7.4541886 greater   0.01
+    ## 20     Titi 1.8106553  3.6322851 greater   0.01
+    ## 21     Abbr 5.8043296  6.5873230 greater   0.01
+    ## 22     Icme 8.4683537  4.1444542 greater   0.02
+    ## 23     Acce 5.7953055  7.2370775 greater   0.01
+    ## 24     Ruru 1.9475787  3.7530212 greater   0.01
+    ## 25     Blbj 5.6984685  4.7753626 greater   0.01
+    ## 26     Alal 4.9846448 12.5027895 greater   0.01
+    ## 27     Anan 5.7954132  6.8454000 greater   0.01
+    ## 28 OMI.mean 3.3980496 18.5946261 greater   0.01
 
 Calculation of the WitOMI
 -------------------------
 
-![](README_files/Warning.png)The result of the test on marginality from the OMI analysis are important for the relevance of the WitOMI calculation. The following functions will still calculate the WitOMI even if the OMI are not significant. For the WitOMI to be use for interpretation, the OMI should first be significant. Then, the probability for the WitOMI to be significant within the subset *G<sub>K</sub>* correspond to the `$witomigtest$SubniPvalue` wihtin the  `rtestrefor` function for WitOMI*G*. And the equivalent for the WitOMI*G<sub>K</sub>* is `$witomig_ktest$SubniPvalue` in the `rtestsubor`.
+![](README_files/Warning.png)The result of the test on marginality from the OMI analysis are important for the relevance of the WitOMI calculation. The following functions will still calculate the WitOMI even if the OMI are not significant. OMI must be significant if the WitOMI are to be used for interpretation. See Stéphane Karasiewicz, Dolédec, and Lefebvre (2017) for more details.
 
 `margvect`displays the marginality vector of the suborigins,*G<sub>K</sub>* ,within the overall available habitat conditions (black polygon), the available resource under each subset habitat condition (red polygons), and the species subniche (species label).
 
@@ -359,7 +376,7 @@ subplot(subnic1)
 
 ![](README_files/figure-markdown_github/unnamed-chunk-14-1.png)![](README_files/figure-markdown_github/unnamed-chunk-14-2.png)
 
-`subparam.refor` calculates the species marginality (WitOMI*G*), tolerance (Tol) and residual tolerance (Rtol) to the average habitat condition (*G*). For details on the parameters calculation see Karasiewicz et al. (2017).
+`subparam.refor` calculates the species marginality (WitOMI*G*), tolerance (Tol) and residual tolerance (Rtol) to the average habitat condition (*G*). For details on the parameters calculation see Stéphane Karasiewicz, Dolédec, and Lefebvre (2017).
 
 ``` r
 kable(subparam.refor(subnic1))
@@ -428,7 +445,7 @@ kable(subparam.refor(subnic1))
 refor <- rtestrefor(subnic1,100)
 ```
 
-First,for each of the two subsets, the subset statictical significance is tested with the following null hypothesis that *G<sub>K</sub>* is not different from the overall average habitat conditions, represented by *G*. The subsets *P* value is equal to the product of equiprobabilities to find the same mean value for each variables (Karasiewicz et al., 2017).
+First,for each of the two subsets, the subset statictical significance is tested with the following null hypothesis that *G<sub>K</sub>* is not different from the overall average habitat conditions, represented by *G*. The subsets *P* value is equal to the product of equiprobabilities to find the same mean value for each variables (Stéphane Karasiewicz, Dolédec, and Lefebvre 2017).
 
 ``` r
 refor[[1]]$Subsettest
@@ -443,18 +460,18 @@ refor[[1]]$Subsettest
     ## Adjustment method for multiple comparisons:   none 
     ## Permutation number:   100 
     ##    Test        Obs    Std.Obs     Alter     Pvalue
-    ## 1   dfs -0.8603563 -5.1269081 two-sided 0.00990099
-    ## 2   alt  0.8413738  4.9289456 two-sided 0.00990099
-    ## 3   slo  0.6719200  4.1023352 two-sided 0.00990099
-    ## 4   flo -0.7343498 -3.8565631 two-sided 0.00990099
-    ## 5    pH  0.1366260  0.7799796 two-sided 0.46534653
-    ## 6   har -0.4844664 -2.7501876 two-sided 0.00990099
-    ## 7   pho -0.4568414 -2.4321842 two-sided 0.00990099
-    ## 8   nit -0.7834262 -4.3234097 two-sided 0.00990099
-    ## 9   amm -0.4543625 -2.3307499 two-sided 0.00990099
-    ## 10  oxy  0.5127452  3.0018448 two-sided 0.00990099
-    ## 11  bdo -0.3869307 -1.7348761 two-sided 0.07920792
-    ## Subsets Pvalue: 3.370177e-20 
+    ## 1   dfs -0.8603563 -4.4289334 two-sided 0.00990099
+    ## 2   alt  0.8413738  4.7068896 two-sided 0.00990099
+    ## 3   slo  0.6719200  3.8312561 two-sided 0.00990099
+    ## 4   flo -0.7343498 -4.5607761 two-sided 0.00990099
+    ## 5    pH  0.1366260  0.6822552 two-sided 0.57425743
+    ## 6   har -0.4844664 -2.4569771 two-sided 0.00990099
+    ## 7   pho -0.4568414 -2.3440222 two-sided 0.00990099
+    ## 8   nit -0.7834262 -3.5233410 two-sided 0.00990099
+    ## 9   amm -0.4543625 -2.3982861 two-sided 0.00990099
+    ## 10  oxy  0.5127452  2.6689268 two-sided 0.01980198
+    ## 11  bdo -0.3869307 -1.9269232 two-sided 0.06930693
+    ## Subsets Pvalue: 7.278149e-20 
     ## other elements: subpvalue call
 
 ``` r
@@ -470,21 +487,21 @@ refor[[2]]$Subsettest
     ## Adjustment method for multiple comparisons:   none 
     ## Permutation number:   100 
     ##    Test        Obs    Std.Obs     Alter     Pvalue
-    ## 1   dfs  0.8603563  4.6701733 two-sided 0.00990099
-    ## 2   alt -0.8413738 -4.8245728 two-sided 0.00990099
-    ## 3   slo -0.6719200 -3.8804963 two-sided 0.00990099
-    ## 4   flo  0.7343498  4.0718670 two-sided 0.00990099
-    ## 5    pH -0.1366260 -0.7172813 two-sided 0.55445545
-    ## 6   har  0.4844664  2.4421417 two-sided 0.00990099
-    ## 7   pho  0.4568414  2.3482441 two-sided 0.00990099
-    ## 8   nit  0.7834262  4.5627509 two-sided 0.00990099
-    ## 9   amm  0.4543625  2.2062005 two-sided 0.00990099
-    ## 10  oxy -0.5127452 -2.3523098 two-sided 0.02970297
-    ## 11  bdo  0.3869307  1.9923689 two-sided 0.06930693
-    ## Subsets Pvalue: 1.054077e-19 
+    ## 1   dfs  0.8603563  4.6633682 two-sided 0.00990099
+    ## 2   alt -0.8413738 -3.9270603 two-sided 0.00990099
+    ## 3   slo -0.6719200 -3.3894736 two-sided 0.00990099
+    ## 4   flo  0.7343498  3.9293079 two-sided 0.00990099
+    ## 5    pH -0.1366260 -0.8700011 two-sided 0.50495050
+    ## 6   har  0.4844664  2.4418451 two-sided 0.01980198
+    ## 7   pho  0.4568414  2.4032615 two-sided 0.00990099
+    ## 8   nit  0.7834262  3.6933631 two-sided 0.00990099
+    ## 9   amm  0.4543625  2.4030333 two-sided 0.00990099
+    ## 10  oxy -0.5127452 -2.7523268 two-sided 0.00990099
+    ## 11  bdo  0.3869307  2.0055996 two-sided 0.02970297
+    ## Subsets Pvalue: 2.742751e-20 
     ## other elements: subpvalue call
 
-Second the species marginality is tested for statistical significance following the null hypothesis that the species within each of the subsets is uninfluenced by its overall average habitat conditions (ubiquitous), for WitOMI*G* (Karasiewicz et al., 2017).
+Second the species marginality were tested for statistical significance following the null hypothesis that the species within each of the subsets is uninfluenced by its overall average habitat conditions (ubiquitous), for WitOMI*G* (Stéphane Karasiewicz, Dolédec, and Lefebvre 2017).
 
 ``` r
 refor[[1]]$witomigtest
@@ -499,34 +516,34 @@ refor[[1]]$witomigtest
     ## Adjustment method for multiple comparisons:   none 
     ## Permutation number:   100 
     ##        Test      Obs    Std.Obs   Alter     Pvalue  SubniPvalue
-    ## 1      Cogo 4.299120 -0.4797155 greater 0.65346535 2.202294e-20
-    ## 2      Satr 4.809033  0.1018531 greater 0.40594059 1.368092e-20
-    ## 3      Phph 3.925657 -0.3729193 greater 0.61386139 2.068822e-20
-    ## 4      Neba 4.205376 -0.1665233 greater 0.60396040 2.035454e-20
-    ## 5      Thth 3.969489 -0.7485319 greater 0.72277228 2.435871e-20
-    ## 6      Teso 6.896211  0.2437952 greater 0.30693069 1.034411e-20
+    ## 1      Cogo 4.299120 -0.4857548 greater 0.66336634 4.828079e-20
+    ## 2      Satr 4.809033  0.1540378 greater 0.37623762 2.738313e-20
+    ## 3      Phph 3.925657 -0.5881329 greater 0.63366337 4.611896e-20
+    ## 4      Neba 4.205376 -0.1171653 greater 0.55445545 4.035409e-20
+    ## 5      Thth 3.969489 -0.5950657 greater 0.74257426 5.404566e-20
+    ## 6      Teso 6.896211  0.2874126 greater 0.29702970 2.161826e-20
     ## 7      Chna      NaN        NaN greater         NA           NA
     ## 8      Chto      NaN        NaN greater         NA           NA
-    ## 9      Lele 3.247430 -1.0826484 greater 0.86138614 2.903024e-20
-    ## 10     Lece 2.511241 -2.0763680 greater 1.00000000 3.370177e-20
-    ## 11     Baba 9.820319  3.6977387 greater 0.00990099 3.336809e-22
+    ## 9      Lele 3.247430 -1.0771283 greater 0.87128713 6.341357e-20
+    ## 10     Lece 2.511241 -1.7317207 greater 0.99009901 7.206088e-20
+    ## 11     Baba 9.820319  3.0661267 greater 0.01980198 1.441218e-21
     ## 12     Spbi      NaN        NaN greater         NA           NA
-    ## 13     Gogo 3.069763 -1.0322757 greater 0.91089109 3.069864e-20
-    ## 14     Eslu 5.390231  0.5189888 greater 0.29702970 1.001043e-20
-    ## 15     Pefl 6.179629  0.6771121 greater 0.20792079 7.007299e-21
+    ## 13     Gogo 3.069763 -1.0804703 greater 0.87128713 6.341357e-20
+    ## 14     Eslu 5.390231  0.4646594 greater 0.28712871 2.089765e-20
+    ## 15     Pefl 6.179629  0.9896733 greater 0.15841584 1.152974e-20
     ## 16     Rham      NaN        NaN greater         NA           NA
     ## 17     Legi      NaN        NaN greater         NA           NA
-    ## 18     Scer 6.029779  0.3948968 greater 0.29702970 1.001043e-20
+    ## 18     Scer 6.029779  0.2591498 greater 0.35643564 2.594192e-20
     ## 19     Cyca      NaN        NaN greater         NA           NA
-    ## 20     Titi 4.501950  0.1235417 greater 0.39603960 1.334724e-20
+    ## 20     Titi 4.501950 -0.1684308 greater 0.54455446 3.963348e-20
     ## 21     Abbr      NaN        NaN greater         NA           NA
     ## 22     Icme      NaN        NaN greater         NA           NA
     ## 23     Acce      NaN        NaN greater         NA           NA
-    ## 24     Ruru 4.960883  0.4021626 greater 0.29702970 1.001043e-20
+    ## 24     Ruru 4.960883  0.3948744 greater 0.31683168 2.305948e-20
     ## 25     Blbj      NaN        NaN greater         NA           NA
     ## 26     Alal      NaN        NaN greater         NA           NA
     ## 27     Anan      NaN        NaN greater         NA           NA
-    ## 28 OMI.mean 4.921074 -0.2049249 greater 0.57425743 1.935349e-20
+    ## 28 OMI.mean 4.921074 -0.3203276 greater 0.64356436 4.683957e-20
     ## 
     ## other elements: adj.method sub.pvalue subni.pvalue call
 
@@ -542,38 +559,38 @@ refor[[2]]$witomigtest
     ## 
     ## Adjustment method for multiple comparisons:   none 
     ##        Test      Obs      Std.Obs   Alter N.perm    Pvalue  SubniPvalue
-    ## 1      Cogo 1.126400 -0.847993049 greater    100 1.0000000 1.054077e-19
-    ## 2      Satr 1.495458 -1.656416780 greater    100 1.0000000 1.054077e-19
-    ## 3      Phph 1.482589 -1.914492198 greater    100 0.9900990 1.043640e-19
-    ## 4      Neba 1.459884 -2.184671273 greater    100 1.0000000 1.054077e-19
-    ## 5      Thth 3.615121 -0.562734987 greater    100 0.6039604 6.366206e-20
-    ## 6      Teso 1.256070 -0.867823951 greater    100 0.9405941 9.914583e-20
-    ## 7      Chna 3.003663 -0.790086489 greater    100 0.8316832 8.766578e-20
-    ## 8      Chto 2.022893 -0.856164570 greater    100 0.9306931 9.810219e-20
-    ## 9      Lele 2.687707 -1.049134899 greater    100 0.9306931 9.810219e-20
-    ## 10     Lece 3.866684 -0.363414723 greater    100 0.6039604 6.366206e-20
-    ## 11     Baba 3.216743 -0.567872853 greater    100 0.6831683 7.201118e-20
-    ## 12     Spbi 3.648142 -0.451760319 greater    100 0.6039604 6.366206e-20
-    ## 13     Gogo 3.956758 -0.475981575 greater    100 0.6534653 6.888026e-20
-    ## 14     Eslu 4.937736  0.125899966 greater    100 0.4059406 4.278925e-20
-    ## 15     Pefl 4.018942 -0.419662467 greater    100 0.6039604 6.366206e-20
-    ## 16     Rham 4.906593 -0.249083098 greater    100 0.5049505 5.322565e-20
-    ## 17     Legi 4.825299 -0.180668831 greater    100 0.4356436 4.592017e-20
-    ## 18     Scer 6.155192  0.129548254 greater    100 0.3267327 3.444013e-20
-    ## 19     Cyca 5.221118 -0.104250894 greater    100 0.4554455 4.800745e-20
-    ## 20     Titi 4.169011 -0.348335832 greater    100 0.5940594 6.261842e-20
-    ## 21     Abbr 5.804330 -0.082686983 greater     99 0.3500000 3.689268e-20
-    ## 22     Icme 8.468354  0.045716532 greater    100 0.3762376 3.965833e-20
-    ## 23     Acce 5.795305  0.133893196 greater    100 0.2970297 3.130921e-20
-    ## 24     Ruru 3.920043 -0.473416613 greater    100 0.6237624 6.574934e-20
-    ## 25     Blbj 5.698468 -0.002604356 greater    100 0.3465347 3.652741e-20
-    ## 26     Alal 4.984645  0.094990529 greater    100 0.3762376 3.965833e-20
-    ## 27     Anan 5.795413 -0.012767457 greater    100 0.4059406 4.278925e-20
-    ## 28 OMI.mean 3.982910 -2.036166832 greater    100 0.9801980 1.033204e-19
+    ## 1      Cogo 1.126400 -1.071008089 greater     99 0.9800000 2.687896e-20
+    ## 2      Satr 1.495458 -1.384368213 greater    100 0.9900990 2.715595e-20
+    ## 3      Phph 1.482589 -1.805065949 greater    100 1.0000000 2.742751e-20
+    ## 4      Neba 1.459884 -2.190336222 greater    100 1.0000000 2.742751e-20
+    ## 5      Thth 3.615121 -0.448444536 greater    100 0.6633663 1.819448e-20
+    ## 6      Teso 1.256070 -0.909485757 greater    100 0.9603960 2.634127e-20
+    ## 7      Chna 3.003663 -0.710053983 greater    100 0.7920792 2.172476e-20
+    ## 8      Chto 2.022893 -1.127048923 greater    100 0.9603960 2.634127e-20
+    ## 9      Lele 2.687707 -1.110035084 greater    100 0.9108911 2.498347e-20
+    ## 10     Lece 3.866684 -0.472680216 greater    100 0.6237624 1.710825e-20
+    ## 11     Baba 3.216743 -0.642838429 greater    100 0.7128713 1.955228e-20
+    ## 12     Spbi 3.648142 -0.476957337 greater    100 0.6237624 1.710825e-20
+    ## 13     Gogo 3.956758 -0.377848990 greater    100 0.6237624 1.710825e-20
+    ## 14     Eslu 4.937736  0.132781683 greater    100 0.3762376 1.031926e-20
+    ## 15     Pefl 4.018942 -0.322996073 greater    100 0.5544554 1.520733e-20
+    ## 16     Rham 4.906593 -0.088034873 greater    100 0.4554455 1.249174e-20
+    ## 17     Legi 4.825299 -0.179556672 greater    100 0.4455446 1.222018e-20
+    ## 18     Scer 6.155192  0.119252884 greater    100 0.3861386 1.059082e-20
+    ## 19     Cyca 5.221118 -0.032313418 greater    100 0.3762376 1.031926e-20
+    ## 20     Titi 4.169011 -0.287632191 greater    100 0.5247525 1.439265e-20
+    ## 21     Abbr 5.804330 -0.047905033 greater    100 0.3465347 9.504581e-21
+    ## 22     Icme 8.468354  0.268638637 greater     99 0.2300000 6.308326e-21
+    ## 23     Acce 5.795305  0.120436808 greater    100 0.3465347 9.504581e-21
+    ## 24     Ruru 3.920043 -0.475492684 greater    100 0.6633663 1.819448e-20
+    ## 25     Blbj 5.698468  0.018093704 greater    100 0.4059406 1.113394e-20
+    ## 26     Alal 4.984645  0.023657094 greater    100 0.4356436 1.194862e-20
+    ## 27     Anan 5.795413 -0.006314469 greater    100 0.3960396 1.086238e-20
+    ## 28 OMI.mean 3.982910 -1.789167461 greater    100 0.9801980 2.688439e-20
     ## 
     ## other elements: adj.method sub.pvalue subni.pvalue call
 
-`subparam.subor` calculates the species marginality (WitOMI*G<sub>K</sub>*), tolerance (Tol) and residual tolerance (Rtol) to the subset average habitat condition (*G<sub>K</sub>*). For details on the parameters calculation see Karasiewicz et al. (2017).
+`subparam.subor` calculates the species marginality (WitOMI*G<sub>K</sub>*), tolerance (Tol) and residual tolerance (Rtol) to the subset average habitat condition (*G<sub>K</sub>*). For details on the parameters calculation see Stéphane Karasiewicz, Dolédec, and Lefebvre (2017).
 
 ``` r
 kable(subparam.subor(subnic1))
@@ -656,19 +673,19 @@ subor[[1]]$Subsettest
     ## 
     ## Adjustment method for multiple comparisons:   none 
     ## Permutation number:   100 
-    ##    Test        Obs   Std.Obs     Alter     Pvalue
-    ## 1   dfs -0.8603563 -4.505689 two-sided 0.00990099
-    ## 2   alt  0.8413738  4.284190 two-sided 0.00990099
-    ## 3   slo  0.6719200  3.481214 two-sided 0.00990099
-    ## 4   flo -0.7343498 -3.835711 two-sided 0.00990099
-    ## 5    pH  0.1366260  0.977780 two-sided 0.49504950
-    ## 6   har -0.4844664 -2.487243 two-sided 0.00990099
-    ## 7   pho -0.4568414 -2.371931 two-sided 0.00990099
-    ## 8   nit -0.7834262 -4.406508 two-sided 0.00990099
-    ## 9   amm -0.4543625 -3.082091 two-sided 0.00990099
-    ## 10  oxy  0.5127452  2.780679 two-sided 0.01980198
-    ## 11  bdo -0.3869307 -2.068883 two-sided 0.03960396
-    ## Subsets Pvalue: 3.585295e-20 
+    ##    Test        Obs    Std.Obs     Alter     Pvalue
+    ## 1   dfs -0.8603563 -4.3763723 two-sided 0.00990099
+    ## 2   alt  0.8413738  5.2359755 two-sided 0.00990099
+    ## 3   slo  0.6719200  3.6361412 two-sided 0.00990099
+    ## 4   flo -0.7343498 -3.8209315 two-sided 0.00990099
+    ## 5    pH  0.1366260  0.5929723 two-sided 0.59405941
+    ## 6   har -0.4844664 -2.5360285 two-sided 0.00990099
+    ## 7   pho -0.4568414 -2.5752800 two-sided 0.00990099
+    ## 8   nit -0.7834262 -4.0044224 two-sided 0.00990099
+    ## 9   amm -0.4543625 -2.5054105 two-sided 0.00990099
+    ## 10  oxy  0.5127452  2.8335326 two-sided 0.01980198
+    ## 11  bdo -0.3869307 -1.9107220 two-sided 0.04950495
+    ## Subsets Pvalue: 5.377942e-20 
     ## other elements: subpvalue call
 
 ``` r
@@ -683,25 +700,25 @@ subor[[2]]$Subsettest
     ## 
     ## Adjustment method for multiple comparisons:   none 
     ## Permutation number:   100 
-    ##    Test        Obs    Std.Obs     Alter     Pvalue
-    ## 1   dfs  0.8603563  4.6182042 two-sided 0.00990099
-    ## 2   alt -0.8413738 -4.5498021 two-sided 0.00990099
-    ## 3   slo -0.6719200 -3.7743491 two-sided 0.00990099
-    ## 4   flo  0.7343498  4.1315373 two-sided 0.00990099
-    ## 5    pH -0.1366260 -0.8088944 two-sided 0.42574257
-    ## 6   har  0.4844664  2.8198290 two-sided 0.00990099
-    ## 7   pho  0.4568414  2.4259170 two-sided 0.00990099
-    ## 8   nit  0.7834262  4.3515172 two-sided 0.00990099
-    ## 9   amm  0.4543625  2.4968679 two-sided 0.00990099
-    ## 10  oxy -0.5127452 -2.8885904 two-sided 0.01980198
-    ## 11  bdo  0.3869307  2.0889439 two-sided 0.03960396
-    ## Subsets Pvalue: 3.083354e-20 
+    ##    Test        Obs   Std.Obs     Alter     Pvalue
+    ## 1   dfs  0.8603563  4.599980 two-sided 0.00990099
+    ## 2   alt -0.8413738 -4.532573 two-sided 0.00990099
+    ## 3   slo -0.6719200 -3.553510 two-sided 0.00990099
+    ## 4   flo  0.7343498  4.188457 two-sided 0.00990099
+    ## 5    pH -0.1366260 -0.859844 two-sided 0.50495050
+    ## 6   har  0.4844664  2.319696 two-sided 0.01980198
+    ## 7   pho  0.4568414  2.640490 two-sided 0.00990099
+    ## 8   nit  0.7834262  3.988558 two-sided 0.00990099
+    ## 9   amm  0.4543625  2.524681 two-sided 0.00990099
+    ## 10  oxy -0.5127452 -2.555268 two-sided 0.00990099
+    ## 11  bdo  0.3869307  2.416698 two-sided 0.02970297
+    ## Subsets Pvalue: 2.742751e-20 
     ## other elements: subpvalue call
 
-Second the species marginality is tested for significance following the null hypothesis that the species within a subset is uninfluenced by its subset average habitat conditions (ubiquitous), for WitOMI*G<sub>K</sub>* (Karasiewicz et al., 2017).
+Second the species marginality were tested for significance following the null hypothesis that the species within a subset is uninfluenced by its subset average habitat conditions (ubiquitous), for WitOMI*G<sub>K</sub>* (Stéphane Karasiewicz, Dolédec, and Lefebvre 2017).
 
 ``` r
-refor[[1]]$witomigtest
+subor[[1]]$witomig_ktest
 ```
 
     ## class: subnikrandtest 
@@ -712,40 +729,40 @@ refor[[1]]$witomigtest
     ## 
     ## Adjustment method for multiple comparisons:   none 
     ## Permutation number:   100 
-    ##        Test      Obs    Std.Obs   Alter     Pvalue  SubniPvalue
-    ## 1      Cogo 4.299120 -0.4797155 greater 0.65346535 2.202294e-20
-    ## 2      Satr 4.809033  0.1018531 greater 0.40594059 1.368092e-20
-    ## 3      Phph 3.925657 -0.3729193 greater 0.61386139 2.068822e-20
-    ## 4      Neba 4.205376 -0.1665233 greater 0.60396040 2.035454e-20
-    ## 5      Thth 3.969489 -0.7485319 greater 0.72277228 2.435871e-20
-    ## 6      Teso 6.896211  0.2437952 greater 0.30693069 1.034411e-20
-    ## 7      Chna      NaN        NaN greater         NA           NA
-    ## 8      Chto      NaN        NaN greater         NA           NA
-    ## 9      Lele 3.247430 -1.0826484 greater 0.86138614 2.903024e-20
-    ## 10     Lece 2.511241 -2.0763680 greater 1.00000000 3.370177e-20
-    ## 11     Baba 9.820319  3.6977387 greater 0.00990099 3.336809e-22
-    ## 12     Spbi      NaN        NaN greater         NA           NA
-    ## 13     Gogo 3.069763 -1.0322757 greater 0.91089109 3.069864e-20
-    ## 14     Eslu 5.390231  0.5189888 greater 0.29702970 1.001043e-20
-    ## 15     Pefl 6.179629  0.6771121 greater 0.20792079 7.007299e-21
-    ## 16     Rham      NaN        NaN greater         NA           NA
-    ## 17     Legi      NaN        NaN greater         NA           NA
-    ## 18     Scer 6.029779  0.3948968 greater 0.29702970 1.001043e-20
-    ## 19     Cyca      NaN        NaN greater         NA           NA
-    ## 20     Titi 4.501950  0.1235417 greater 0.39603960 1.334724e-20
-    ## 21     Abbr      NaN        NaN greater         NA           NA
-    ## 22     Icme      NaN        NaN greater         NA           NA
-    ## 23     Acce      NaN        NaN greater         NA           NA
-    ## 24     Ruru 4.960883  0.4021626 greater 0.29702970 1.001043e-20
-    ## 25     Blbj      NaN        NaN greater         NA           NA
-    ## 26     Alal      NaN        NaN greater         NA           NA
-    ## 27     Anan      NaN        NaN greater         NA           NA
-    ## 28 OMI.mean 4.921074 -0.2049249 greater 0.57425743 1.935349e-20
+    ##        Test        Obs    Std.Obs   Alter     Pvalue  SubniPvalue
+    ## 1      Cogo  4.9375290  3.4330863 greater 0.01980198 1.064939e-21
+    ## 2      Satr  0.2336491 -0.7456242 greater 0.73267327 3.940275e-20
+    ## 3      Phph  0.1319164 -0.6681064 greater 0.76237624 4.100015e-20
+    ## 4      Neba  0.0763470 -0.8571843 greater 0.88118812 4.738979e-20
+    ## 5      Thth  4.5179183  2.2513625 greater 0.03960396 2.129878e-21
+    ## 6      Teso  7.9956322  4.5792459 greater 0.01980198 1.064939e-21
+    ## 7      Chna        NaN        NaN greater         NA           NA
+    ## 8      Chto        NaN        NaN greater         NA           NA
+    ## 9      Lele  0.5261420  0.3524321 greater 0.28712871 1.544162e-20
+    ## 10     Lece  0.4955039  1.5787896 greater 0.09900990 5.324695e-21
+    ## 11     Baba 11.3534854 22.2637719 greater 0.00990099 5.324695e-22
+    ## 12     Spbi        NaN        NaN greater         NA           NA
+    ## 13     Gogo  0.5859616  0.8861035 greater 0.17821782 9.584452e-21
+    ## 14     Eslu  0.5806859  0.1452210 greater 0.37623762 2.023384e-20
+    ## 15     Pefl  1.1238890  0.8732369 greater 0.19801980 1.064939e-20
+    ## 16     Rham        NaN        NaN greater         NA           NA
+    ## 17     Legi        NaN        NaN greater         NA           NA
+    ## 18     Scer  2.7973083  1.3539470 greater 0.11881188 6.389634e-21
+    ## 19     Cyca        NaN        NaN greater         NA           NA
+    ## 20     Titi  0.7540019  0.3947903 greater 0.25742574 1.384421e-20
+    ## 21     Abbr        NaN        NaN greater         NA           NA
+    ## 22     Icme        NaN        NaN greater         NA           NA
+    ## 23     Acce        NaN        NaN greater         NA           NA
+    ## 24     Ruru  2.5343078  5.3103967 greater 0.00990099 5.324695e-22
+    ## 25     Blbj        NaN        NaN greater         NA           NA
+    ## 26     Alal        NaN        NaN greater         NA           NA
+    ## 27     Anan        NaN        NaN greater         NA           NA
+    ## 28 OMI.mean  2.5762852 11.5673359 greater 0.00990099 5.324695e-22
     ## 
     ## other elements: adj.method sub.pvalue subni.pvalue call
 
 ``` r
-refor[[2]]$witomigtest
+subor[[2]]$witomig_ktest
 ```
 
     ## class: subnikrandtest 
@@ -755,47 +772,48 @@ refor[[2]]$witomigtest
     ## Number of tests:   28 
     ## 
     ## Adjustment method for multiple comparisons:   none 
-    ##        Test      Obs      Std.Obs   Alter N.perm    Pvalue  SubniPvalue
-    ## 1      Cogo 1.126400 -0.847993049 greater    100 1.0000000 1.054077e-19
-    ## 2      Satr 1.495458 -1.656416780 greater    100 1.0000000 1.054077e-19
-    ## 3      Phph 1.482589 -1.914492198 greater    100 0.9900990 1.043640e-19
-    ## 4      Neba 1.459884 -2.184671273 greater    100 1.0000000 1.054077e-19
-    ## 5      Thth 3.615121 -0.562734987 greater    100 0.6039604 6.366206e-20
-    ## 6      Teso 1.256070 -0.867823951 greater    100 0.9405941 9.914583e-20
-    ## 7      Chna 3.003663 -0.790086489 greater    100 0.8316832 8.766578e-20
-    ## 8      Chto 2.022893 -0.856164570 greater    100 0.9306931 9.810219e-20
-    ## 9      Lele 2.687707 -1.049134899 greater    100 0.9306931 9.810219e-20
-    ## 10     Lece 3.866684 -0.363414723 greater    100 0.6039604 6.366206e-20
-    ## 11     Baba 3.216743 -0.567872853 greater    100 0.6831683 7.201118e-20
-    ## 12     Spbi 3.648142 -0.451760319 greater    100 0.6039604 6.366206e-20
-    ## 13     Gogo 3.956758 -0.475981575 greater    100 0.6534653 6.888026e-20
-    ## 14     Eslu 4.937736  0.125899966 greater    100 0.4059406 4.278925e-20
-    ## 15     Pefl 4.018942 -0.419662467 greater    100 0.6039604 6.366206e-20
-    ## 16     Rham 4.906593 -0.249083098 greater    100 0.5049505 5.322565e-20
-    ## 17     Legi 4.825299 -0.180668831 greater    100 0.4356436 4.592017e-20
-    ## 18     Scer 6.155192  0.129548254 greater    100 0.3267327 3.444013e-20
-    ## 19     Cyca 5.221118 -0.104250894 greater    100 0.4554455 4.800745e-20
-    ## 20     Titi 4.169011 -0.348335832 greater    100 0.5940594 6.261842e-20
-    ## 21     Abbr 5.804330 -0.082686983 greater     99 0.3500000 3.689268e-20
-    ## 22     Icme 8.468354  0.045716532 greater    100 0.3762376 3.965833e-20
-    ## 23     Acce 5.795305  0.133893196 greater    100 0.2970297 3.130921e-20
-    ## 24     Ruru 3.920043 -0.473416613 greater    100 0.6237624 6.574934e-20
-    ## 25     Blbj 5.698468 -0.002604356 greater    100 0.3465347 3.652741e-20
-    ## 26     Alal 4.984645  0.094990529 greater    100 0.3762376 3.965833e-20
-    ## 27     Anan 5.795413 -0.012767457 greater    100 0.4059406 4.278925e-20
-    ## 28 OMI.mean 3.982910 -2.036166832 greater    100 0.9801980 1.033204e-19
+    ## Permutation number:   100 
+    ##        Test       Obs      Std.Obs   Alter     Pvalue  SubniPvalue
+    ## 1      Cogo 4.6811288  1.298968466 greater 0.07920792 2.172476e-21
+    ## 2      Satr 3.5120259  3.704669100 greater 0.01980198 5.431189e-22
+    ## 3      Phph 3.1574389  8.525674508 greater 0.00990099 2.715595e-22
+    ## 4      Neba 2.3680054  7.090480915 greater 0.00990099 2.715595e-22
+    ## 5      Thth 2.4342785  0.120052063 greater 0.25742574 7.060546e-21
+    ## 6      Teso 3.9291600  0.262532702 greater 0.19801980 5.431189e-21
+    ## 7      Chna 0.9148978 -0.245380111 greater 0.47524752 1.303485e-20
+    ## 8      Chto 2.0333059  0.304886663 greater 0.23762376 6.517427e-21
+    ## 9      Lele 0.9497922  0.262658291 greater 0.27722772 7.603665e-21
+    ## 10     Lece 0.3158352  0.066756113 greater 0.27722772 7.603665e-21
+    ## 11     Baba 1.1832592  0.682739116 greater 0.21782178 5.974308e-21
+    ## 12     Spbi 1.4703463  0.119503784 greater 0.26732673 7.332105e-21
+    ## 13     Gogo 0.4700963 -0.064965688 greater 0.39603960 1.086238e-20
+    ## 14     Eslu 0.7938952 -0.030900357 greater 0.35643564 9.776141e-21
+    ## 15     Pefl 1.5042159  1.247030829 greater 0.08910891 2.444035e-21
+    ## 16     Rham 1.2523355  0.152013699 greater 0.28712871 7.875224e-21
+    ## 17     Legi 0.9808150 -0.133334249 greater 0.40594059 1.113394e-20
+    ## 18     Scer 1.0252173 -0.275195093 greater 0.50495050 1.384953e-20
+    ## 19     Cyca 1.4621416 -0.089659437 greater 0.39603960 1.086238e-20
+    ## 20     Titi 0.9720175  0.107044402 greater 0.31683168 8.689903e-21
+    ## 21     Abbr 1.4800497 -0.220373653 greater 0.47524752 1.303485e-20
+    ## 22     Icme 2.5750240 -0.004214728 greater 0.37623762 1.031926e-20
+    ## 23     Acce 0.6682218 -0.575423559 greater 0.70297030 1.928072e-20
+    ## 24     Ruru 0.4381958 -0.299570522 greater 0.47524752 1.303485e-20
+    ## 25     Blbj 1.1670965 -0.323618867 greater 0.53465347 1.466421e-20
+    ## 26     Alal 0.1053735 -0.919614428 greater 0.99009901 2.715595e-20
+    ## 27     Anan 1.3520758 -0.148952014 greater 0.45544554 1.249174e-20
+    ## 28 OMI.mean 1.5998609  0.881078010 greater 0.18811881 5.159630e-21
     ## 
     ## other elements: adj.method sub.pvalue subni.pvalue call
 
-References
+Reference
 ---------
 
-Dolédec, S., Chessel, D., Gimaret-Carpentier, C., 2000. Niche separation in community analysis: A new method. Ecology 81, 2914. doi:[doi:10.1890/0012-9658(2000)081\[2914:NSICAA\]2.0.CO;2](https://doi.org/doi:10.1890/0012-9658(2000)081[2914:NSICAA]2.0.CO;2)
+Dolédec, Sylvain, Daniel Chessel, and Clementine Gimaret-Carpentier. 2000. “Niche separation in community analysis: A new method.” *Ecology* 81 (10): 2914. doi:[doi:10.1890/0012-9658(2000)081\[2914:NSICAA\]2.0.CO;2](https://doi.org/doi:10.1890/0012-9658(2000)081[2914:NSICAA]2.0.CO;2).
 
-Dray, S., Dufour, A., 2007. The ade4 package: Implementing the duality diagram for ecologists. Journal of Statistical Software 22, 1–20.
+Dray, S., and A.B. Dufour. 2007. “The Ade4 Package: Implementing the Duality Diagram forEcologists.” *Journal of Statistical Software* 22 (4): 1–20.
 
-Karasiewicz, S., 2017. Subniche: Within outlying mean indexes: Refining the omi analysis. doi:[https://zenodo.org/badge/DOI/10.5281/zenodo.438723.svg](https://doi.org/https://zenodo.org/badge/DOI/10.5281/zenodo.438723.svg)
+Karasiewicz, Stephane. 2017. *Subniche: Within Outlying Mean Indexes: Refining the Omi Analysis*. doi:[https://zenodo.org/badge/DOI/10.5281/zenodo.438723.svg](https://doi.org/https://zenodo.org/badge/DOI/10.5281/zenodo.438723.svg).
 
-Karasiewicz, S., Dolédec, S., Lefebvre, S., 2017. Within outlying mean indexes: Refining the omi analysis for the realized niche decomposition. PeerJ Preprints. doi:[https://doi.org/10.7287/peerj.preprints.2810v1](https://doi.org/https://doi.org/10.7287/peerj.preprints.2810v1)
+Karasiewicz, Stéphane, Sylvain Dolédec, and Sébastien Lefebvre. 2017. “Within Outlying Mean Indexes: Refining the Omi Analysis for the Realized Niche Decomposition.” PeerJ Preprints. doi:[https://doi.org/10.7287/peerj.preprints.2810v1](https://doi.org/https://doi.org/10.7287/peerj.preprints.2810v1).
 
-R Core Team, 2017. R: A language and environment for statistical computing. R Foundation for Statistical Computing, Vienna, Austria.
+R Core Team. 2017. *R: A Language and Environment for Statistical Computing*. Vienna, Austria: R Foundation for Statistical Computing. <https://www.R-project.org/>.
