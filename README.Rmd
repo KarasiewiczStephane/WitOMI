@@ -1,16 +1,9 @@
 ---
-
-title: Subniche Documentation for the Within Outlying Mean Indexes calculations (WitOMI)
-
+title: "Subniche Documentation for the Within Outlying Mean Indexes calculations (WitOMI)"
 output: github_document
-
 bibliography: sub.bib
-
 csl: elsevier-harvard.csl
-
 ---
-
-
 
 [subniche](https://cran.r-project.org/web/packages/subniche/index.html) is an open-source R [@r2017] package that implements functions useful for the calculation of the Within Outlying Mean Indexes (WitOMI) and their respective statistical tests [@karasiewicz2017; @subniche2017]. It consists of complementary calculations to the Outlying Mean Index analysis (OMI) [@Doledec2000]. OMI analysis can be implemented with the `niche` function from the [ade4](https://cran.r-project.org/web/packages/ade4/index.html) package [@dray2007]. WitOMI analysis enables to explore niche shift in a community and environmental constraints within an Euclidean space, with graphical displays. The method allows to divide the realized niche, estimated from the `niche` function into subniches defined by a factor (time, space), which creates the subsets of habitat conditions.
 
