@@ -48,6 +48,10 @@ scatter(dudi1)
 
 The graph display the correlation between the different environmental variables. Next the OMI analysis uses the standardized environmental table from the PCA in combination with the faunistic data to performed the OMI analysis. The standardized environmental table can be extracted from the `dudi1` with `$tab` as follow:
 
+``` r
+dudi1$tab
+```
+
 |         dfs|         alt|         slo|         flo|          pH|         har|         pho|         nit|         amm|         oxy|         bdo|
 |-----------:|-----------:|-----------:|-----------:|-----------:|-----------:|-----------:|-----------:|-----------:|-----------:|-----------:|
 |  -1.3663398|   1.6958649|   3.2180111|  -1.2002177|  -0.8783101|  -2.4786185|  -0.6355549|  -1.0463273|  -0.5616922|   1.2902811|  -0.6361105|
@@ -203,7 +207,7 @@ rtest(nic1,100)
 Subsets creation
 ----------------
 
-Herein, for the sake of the example, we will simply create two subsets. A `factor` needs to be made, in order to divide the data in two subsets. The first environmental variable, `doubs$env[,1]`,being the distance from the source ("dfs") and sorted in increasing order, will determine the spatial factor dividing the realized into subniches.
+Herein, for the sake of the example, we will simply create two subsets. A `factor` needs to be made, in order to divide the data in two subsets. The first environmental variable, `doubs$env[,1]`,being the distance from the source ("dfs") and sorted in increasing order, will determine the spatial factor dividing the realized niche into subniches.
 
 ``` r
 N <- dim(nic1$ls)[1]
@@ -212,7 +216,7 @@ fact <- factor(c(rep(1,N/2),rep(2,N/2)))
 #Creates a factor which defines the subsets
 ```
 
-Now that we have the factor for dividing the niche, the [subniche](https://cran.r-project.org/web/packages/subniche/index.html) function an be implemented as follow:
+Now that we have the factor for dividing the niche, the [subniche](https://cran.r-project.org/web/packages/subniche/index.html) function can be implemented as follow:
 
 ``` r
 subnic1 <- subniche(nic1, fact)
@@ -246,7 +250,7 @@ subnic1
     ## 8 $G_k       2    2    G_k coordinates                        
     ## 9 $sub       54   2    species coordinates within each subset
 
-The [subniche](https://cran.r-project.org/web/packages/subniche/index.html) function only add `items`to the `niche` list, which are `$factor`, `$G_k` and `$sub`. The function does not change the results of the OMI analysis from the `niche` function The folowing functions, `plot`, `refparam` and `rtest`, are used to display the same results as in the `ade4` package:
+The [subniche](https://cran.r-project.org/web/packages/subniche/index.html) function only adds `items`to the `niche` list, which are `$factor`, `$G_k` and `$sub`. The function does not change the previous results obtained with the OMI analysis from the `niche` function. The following functions, `plot`, `refparam` and `rtest`, are used to display the same results as in the `ade4` package:
 
 ``` r
 plot(subnic1)
@@ -480,7 +484,7 @@ refor[[2]]$Subsettest
     ## Subsets Pvalue: 1.054077e-19 
     ## other elements: subpvalue call
 
-Second the species marginality were tested for statistical significance following the null hypothesis that the species within each of the subsets is uninfluenced by its overall average habitat conditions (ubiquitous), for WitOMI*G* (Karasiewicz et al., 2017).
+Second the species marginality is tested for statistical significance following the null hypothesis that the species within each of the subsets is uninfluenced by its overall average habitat conditions (ubiquitous), for WitOMI*G* (Karasiewicz et al., 2017).
 
 ``` r
 refor[[1]]$witomigtest
@@ -694,7 +698,7 @@ subor[[2]]$Subsettest
     ## Subsets Pvalue: 3.083354e-20 
     ## other elements: subpvalue call
 
-Second the species marginality were tested for significance following the null hypothesis that the species within a subset is uninfluenced by its subset average habitat conditions (ubiquitous), for WitOMI*G<sub>K</sub>* (Karasiewicz et al., 2017).
+Second the species marginality is tested for significance following the null hypothesis that the species within a subset is uninfluenced by its subset average habitat conditions (ubiquitous), for WitOMI*G<sub>K</sub>* (Karasiewicz et al., 2017).
 
 ``` r
 refor[[1]]$witomigtest
@@ -783,7 +787,7 @@ refor[[2]]$witomigtest
     ## 
     ## other elements: adj.method sub.pvalue subni.pvalue call
 
-Reference
+References
 ---------
 
 Dolédec, S., Chessel, D., Gimaret-Carpentier, C., 2000. Niche separation in community analysis: A new method. Ecology 81, 2914. doi:[doi:10.1890/0012-9658(2000)081\[2914:NSICAA\]2.0.CO;2](https://doi.org/doi:10.1890/0012-9658(2000)081[2914:NSICAA]2.0.CO;2)
