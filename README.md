@@ -21,6 +21,8 @@ library(subniche)
 install.packages("devtools")
 devtools::install_github("KarasiewiczStephane/WitOMI")
 library("subniche")
+install.packages("knitr")
+library(knitr)
 ```
 
 Generate the data required to run this example
