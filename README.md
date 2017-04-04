@@ -158,7 +158,7 @@ kable(niche.param(nic1))
 | Alal |  12.048146|  4.9846448|  1.7027475|  5.360754|  41.4|  14.1|  44.5|
 | Anan |   9.645091|  5.7954132|  1.3592329|  2.490445|  60.1|  14.1|  25.8|
 
-The test for statistical significance can now be implemented
+The test for statistical significance can now be implemented, which correspond to the comparison between the observe species' marginality and the simulated values, hereafter 100 random permutations, under the null hypothesis that the species is indifferent to its environment (Dolédec et al., 2000).
 
 ``` r
 rtest(nic1,100)
@@ -341,7 +341,7 @@ rtest(subnic1)
 Calculation of the WitOMI
 -------------------------
 
-![](README_files/Warning.png)The result of the test on marginality from the OMI analysis are important for the relevance of the WitOMI calculation. The following functions will still calculate the WitOMI even if the OMI are not significant. OMI must be significant if the WitOMI are to be used for interpretation. See Karasiewicz et al. (2017) for more details.
+![](README_files/Warning.png)The result of the test on marginality from the OMI analysis are important for the relevance of the WitOMI calculation. The following functions will still calculate the WitOMI even if the OMI are not significant. For the WitOMI to be use for interpretation, the OMI should first be significant. Then, the probability for the WitOMI to be significant within the subset *G<sub>K</sub>* correspond to the `$witomigtest$SubniPvalue` wihtin the  `rtestrefor` function for WitOMI*G*. And the equivalent for the WitOMI*G<sub>K</sub>* is `$witomig_ktest$SubniPvalue` in the `rtestsubor`.
 
 `margvect`displays the marginality vector of the suborigins,*G<sub>K</sub>* ,within the overall available habitat conditions (black polygon), the available resource under each subset habitat condition (red polygons), and the species subniche (species label).
 
