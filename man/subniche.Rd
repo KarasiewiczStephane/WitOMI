@@ -77,7 +77,7 @@ subnikrandtest(sim, obs, alter = "greater", subpvalue, call = match.call(),
 
 \item{yax}{specify the y column in your matrix}
 
-\item{colo}{string of character specifying the subsets color}
+\item{colo}{string of character specifying the subsets color. Default color is rezd.}
 
 \item{object}{an object of class \code{subniche}.}
 

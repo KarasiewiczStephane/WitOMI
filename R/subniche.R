@@ -11,7 +11,7 @@
 #' @param object an object of class \code{subniche}.
 #' @param xax specify the x column in your matrix
 #' @param yax specify the y column in your matrix
-#' @param colo string of character specifying the subsets color
+#' @param colo string of character specifying the subsets color. Default color is rezd.
 #' @param ...	further arguments passed to or from other methods
 #' @param sim a numeric vector of simulated values
 #' @param obs a numeric vector of an observed value
@@ -97,7 +97,6 @@ subniche <- function(nic, factor){
   appel <- as.list(nic$call)
   Y <- eval.parent(appel[[3]])
   liani <- split(as.data.frame(nic$ls), factor)
-  N <- max(as.numeric(levels(factor)))
   liwei <- sep.factor.row(Y,factor)
   for(i in 1:length(liwei)){
     w <- liwei[[i]]
@@ -327,17 +326,18 @@ subplot <- function (x, xax = 1, yax = 2, colo=NULL, ...)
   on.exit(par(def.par))
   op <- par(oma = c(0,0,0,0) + 0.1,
             mar = c(0,0,0,0) + 0.1)
-  f <- factor(sort(rep(levels(x$factor),nrow(x$li))))
+  nam <- levels(x$factor)
+  f <- factor(sort(rep(nam,nrow(x$li))))
   G_k <- x$G_k
   mut <- x$sub
   for (i in 1:length(levels(x$factor)))
   {
-    s.distri(x$ls, eval.parent(as.list(x$call)[[3]]), cstar = 0,axesell = FALSE, cellipse = 0, cpoint=0, sub = i, csub = 2)
-    s.distri(x$ls[x$factor==i,], eval.parent(as.list(x$call)[[3]])[x$factor==i,], cstar = 0,axesell = FALSE, cellipse = 0, cpoint=1, sub = i, csub = 2,add.plot = T)
-    s.label(mut[f==i,],label=rownames(x$li),add.plot = T)
-    arrows(G_k[array(levels(x$factor)==i), 1],G_k[array(levels(x$factor)==i), 2],  mut[f==i,1],mut[f==i,2], length = 0.1)
-    points(G_k[array(levels(x$factor)==i),],pch=16, col=colo[i])
-    s.chull(x$ls[x$factor==i,], factor(rep(1,length(x$factor[which(x$factor==i)]))), clabel = 0,col=colo[i], optchull = 1, cpoint = 0,add.plot = T)
+    s.distri(x$ls, eval.parent(as.list(x$call)[[3]]), cstar = 0,axesell = FALSE, cellipse = 0, cpoint=0, sub = nam[i], csub = 2)
+    s.distri(x$ls[x$factor==nam[i],], eval.parent(as.list(x$call)[[3]])[x$factor==nam[i],], cstar = 0,axesell = FALSE, cellipse = 0, cpoint=1, sub = nam[i], csub = 2,add.plot = T)
+    s.label(mut[f==nam[i],],label=rownames(x$li),add.plot = T)
+    arrows(G_k[array(levels(x$factor)==nam[i]), 1],G_k[array(levels(x$factor)==nam[i]), 2],  mut[f==nam[i],1],mut[f==nam[i],2], length = 0.1)
+    points(G_k[array(levels(x$factor)==nam[i]),],pch=16, col=colo[i])
+    s.chull(x$ls[x$factor==nam[i],], factor(rep(1,length(x$factor[which(x$factor==nam[i])]))), clabel = 0,col=colo[i], optchull = 1, cpoint = 0,add.plot = T)
     s.chull(x$ls,factor(rep(i,length(x$ls[,1]))), clabel = 0,col="black", optchull = 1, cpoint = 0,add.plot = T)
 
   }

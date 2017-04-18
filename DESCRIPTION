@@ -11,4 +11,5 @@ Depends: ade4
 License: GPL (>= 2)
 RoxygenNote: 6.0.1
 NeedsCompilation: no
-Packaged: 2017-03-29 12:28:13 UTC; skarasiewicz
+LazyData: true
+Packaged: 2017-03-28 23:20:32 UTC; St<c3><a9>phane
