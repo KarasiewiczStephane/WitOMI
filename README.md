@@ -217,7 +217,7 @@ Herein, for the sake of the example, we will create two subsets. A `factor` need
 
 ``` r
 # Creation of the factor
-fact <- fact <- as.factor(as.numeric(cutree(hclust(dist(nic1$ls, "euclidean"), "ward.D"),k=2)))
+fact <- as.factor(as.numeric(cutree(hclust(dist(nic1$ls, "euclidean"), "ward.D"),k=2)))
 # plotting the two subsets
 s.class(nic1$ls, fact, col=c("red", "blue"),cellipse=0, cpoint=2, pch=3)
 s.chull(nic1$ls, fact, col=c("red", "blue"),optchull = 1, add.plot = T)
