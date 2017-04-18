@@ -233,9 +233,6 @@ subplot(subnic1)
 kable(refparam(subnic1))
 
 kable(subparam.refor(subnic1))
-rtest(subnic1,100)
-
-kable(subparam.refor(subnic1))
 rtestrefor(subnic1,100)
 
 kable(subparam.subor(subnic1))
