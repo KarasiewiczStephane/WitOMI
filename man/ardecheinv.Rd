@@ -5,21 +5,22 @@
 \alias{ardecheinv}
 \title{Temporal data}
 \format{The \code{ardecheinv} is a list of 3 components.
-\describe{
 
- \item{\code{env} is a dataframe of 67 rows with 5 environmental tables, collected in spring and autumn}
-
-
- \item{\code{Invertebrates} is a dataframe of 37 rows and 63 species of invertebrates.}
+ \code{env}
+   is a dataframe of 67 rows with 5 environmental tables, collected in spring and autumn.
 
 
- \item{\code{code} dataframe with 63 rows and 2 columns, the species scientific name and their respective code.}
-}}
+ \code{Invertebrates}
+   is a dataframe of 67 rows and 57 species of invertebrates.
+
+
+ \code{code}
+   is a dataframe with 57 rows and 2 columns, the species scientific name and their respective code.}
 \source{
-Merigoux, S. and Doledec, S. (2004). Hydraulic requirements of stream communities: A case study on invertebrates. \emph{Freshwater Biology}, \bold{49}(5), 600–613.
+Merigoux, S. and Doledec, S. (2004). Hydraulic requirements of stream communities: A case study on invertebrates. \emph{Freshwater Biology}, \bold{49}(5), 600-613.
 }
 \usage{
-ardecheinv
+data(ardecheinv)
 }
 \description{
 The \code{ardecheinv} data are the temporal example used as an ecological application of the WitOMI calculations in

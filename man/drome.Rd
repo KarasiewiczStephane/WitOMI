@@ -5,21 +5,22 @@
 \alias{drome}
 \title{Spatial data}
 \format{The \code{drome} is a list of 3 components.
-\describe{
 
- \item{\code{env} is a dataframe with 64 rows with 6 environmental tables, collected in 10 different rivers}
-
-
- \item{\code{fish} is a dataframe with 64 rows and 13 columns (12 fish species, including young and older trouts).}
+ \code{env}
+   is a dataframe with 64 rows with 6 environmental tables, collected in 10 different rivers.
 
 
- \item{\code{code} dataframe with 13 rows and 2 columns, the species, common and scientific, name and their respective code.}
-}}
+ \code{fish}
+   is a dataframe with 64 rows and 13 columns (12 fish species, including young and older trouts).
+
+
+ \code{code}
+   is a dataframe with 13 rows and 2 columns, the species, common and scientific, name and their respective code.}
 \source{
 Doledec S., Chessel D. and Gimaret C. (2000). Niche separation in community analysis: a new method. \emph{Ecology},\bold{81}(10), 2914-1927.
 }
 \usage{
-drome
+data(drome)
 }
 \description{
 The \code{drome} data are the spatial example used as an ecological application of the WitOMI calculations in

@@ -1,7 +1,7 @@
 Package: subniche
 Title: Within Outlying Mean Indexes: Refining the OMI Analysis
-Version: 0.9.5
-Date: 2017-03-29
+Version: 0.9.6
+Date: 2017-04-18
 Author: Stephane Karasiewicz
 Maintainer: Stephane Karasiewicz <stephane.karasiewicz@wanadoo.fr>
 Description: Complementary indexes calculation to the Outlying Mean Index analysis to explore niche shift of a community and biological constraint within an Euclidean space, with graphical displays.
