@@ -13,7 +13,7 @@ How to get started
 Install and load the R package from [CRAN](https://cran.r-project.org/) using the following commands on the R console:
 
 ``` {r}
-install.packages("subniche")
+#install.packages("subniche")
 library(subniche)
 ```
 
@@ -22,10 +22,10 @@ library(subniche)
 \` To install the most recent version from GitHub:
 
 ``` {r}
-install.packages("devtools")
-devtools::install_github("KarasiewiczStephane/WitOMI")
-library(subniche)
-install.packages("knitr")
+#install.packages("devtools")
+#devtools::install_github("KarasiewiczStephane/WitOMI")
+#library(subniche)
+#install.packages("knitr")
 library(knitr)
 ```
 
@@ -51,7 +51,7 @@ scatter(dudi1)
 The graph display the correlation between the different environmental variables. Next the OMI analysis uses the standardized environmental table from the PCA in combination with the faunistic data to performed the OMI analysis. The standardized environmental table can be extracted from the `dudi1` with `$tab` as follow:
 
 ``` {r}
-dudi1$tab
+kable(dudi1$tab)
 ```
 
 
@@ -87,10 +87,12 @@ Herein, for the sake of the example, we will create two subsets. A `factor` need
 
 ``` {r}
 # Creation of the factor
-fact <- factor(cutree(hclust(dist(nic1$ls, "euclidean"), "ward.D"),k=2))
+fact <- fact <- as.factor(as.numeric(cutree(hclust(dist(nic1$ls, "euclidean"), "ward.D"),k=2)))
 # plotting the two subsets
 s.class(nic1$ls, fact, col=c("red", "blue"),cellipse=0, cpoint=2, pch=3)
 s.chull(nic1$ls, fact, col=c("red", "blue"),optchull = 1, add.plot = T)
+#According to the previous graph,(Variable in plot(nic1)), group 1 and 2 corresponds to upstream and downstream conditions respectively.
+levels(fact)<- c("up", "down")
 ```
 
 Now that we have the factor for dividing the niche, the [subniche](https://cran.r-project.org/web/packages/subniche/index.html) function can be implemented as follow:
@@ -231,6 +233,7 @@ margvect(subnic1)
 subplot(subnic1)
 
 kable(refparam(subnic1))
+rtest(subnic1,100)
 
 kable(subparam.refor(subnic1))
 rtestrefor(subnic1,100)

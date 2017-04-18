@@ -327,7 +327,11 @@ subplot <- function (x, xax = 1, yax = 2, colo=NULL, ...)
   op <- par(oma = c(0,0,0,0) + 0.1,
             mar = c(0,0,0,0) + 0.1)
   nam <- levels(x$factor)
-  f <- factor(sort(rep(nam,nrow(x$li))))
+  f <- c()
+  for (i in 1:length(nam)){
+    f <- c(f,rep(nam[i],nrow(x$li)))
+  }
+  f <- factor(f)
   G_k <- x$G_k
   mut <- x$sub
   for (i in 1:length(levels(x$factor)))
@@ -474,10 +478,11 @@ subparam.refor <- function(x){
     res <- apply(Y, 2, calcul.param, mil = X)
     t(res)
   }
-  N <- max(as.numeric(levels(factor)))
+  N <-length(levels(x$factor))
+  nam <- levels(factor)
   for(i in 1:N){
-    res[[i]] <-  subniche.param(x,array(factor)==i)
-    rownames(res[[i]]) <- paste(rownames(x$li),i,sep="")
+    res[[i]] <-  subniche.param(x,array(factor)==nam[i])
+    rownames(res[[i]]) <- paste(rownames(x$li),nam[i],sep="")
     }
   res <- do.call("rbind",res)
   return(res)
@@ -487,7 +492,8 @@ subparam.refor <- function(x){
 rtestrefor <- function(x, nrepet){
 factor <- x$factor
 res <- list()
-N <- max(as.numeric(levels(factor)))
+N <-length(levels(x$factor))
+nam <- levels(factor)
 appel <- as.list(x$call)
 X <- eval.parent(appel[[2]])$tab
 Y <- eval.parent(appel[[3]])
@@ -496,19 +502,20 @@ calcul.margi <- function(freq, mil) {
   return(sum(m^2))
 }
 for(i in 1:N){
-  X1 <- X[array(factor)==i,]
+  X1 <- X[array(factor)==nam[i],]
   Xwobs <- apply(X1, 2, mean)
-  Xsim <- sapply(1:nrepet, function(x) apply(t <- apply(X, 2, sample)[array(factor)==i,], 2, mean))
+  Xsim <- sapply(1:nrepet, function(x) apply(t <- apply(X, 2, sample)[array(factor)==nam[i],], 2, mean))
   Xtest <- subkrandtest(obs=Xwobs, sim=t(Xsim), "two-sided")
-  w1 <- apply(Y[array(factor)==i,], 2, sum)
-  Y1 <- sweep(Y[array(factor)==i,], 2, w1, "/")
+  w1 <- apply(Y[array(factor)==nam[i],], 2, sum)
+  Y1 <- sweep(Y[array(factor)==nam[i],], 2, w1, "/")
   obs <- apply(Y1, 2, calcul.margi, mil = X1)
   obs <- c(obs, OMI.mean = mean(obs,na.rm=TRUE))
-  sim <- sapply(1:nrepet, function(x) apply(sweep(t <- apply(Y, 2, sample)[array(factor)==i,], 2,apply(t, 2, sum),"/"), 2, calcul.margi, mil = X1))
+  sim <- sapply(1:nrepet, function(x) apply(sweep(t <- apply(Y, 2, sample)[array(factor)==nam[i],], 2,apply(t, 2, sum),"/"), 2, calcul.margi, mil = X1))
   sim <- rbind(sim, OMI.mean = apply(sim, 2, mean,na.rm=TRUE))
   omitest <- subnikrandtest(obs = obs, sim = t(sim),subpvalue= Xtest$subpvalue)
   res[[i]] <- list("Subsettest" = Xtest, "witomigtest" = omitest)
 }
+names(res) <- nam
 return(res)
 }
 #' @rdname subniche
@@ -547,9 +554,10 @@ subparam.subor <- function(x){
     res <- apply(Y, 2, calcul.param, mil = X)
     t(res)
   }
-  N <- max(as.numeric(levels(factor)))
+  N <-length(levels(x$factor))
+  nam <- levels(factor)
   for(i in 1:N){
-    res[[i]] <-  subnichesub.param(x,array(factor)==i)
+    res[[i]] <-  subnichesub.param(x,array(factor)==nam[i])
     rownames(res[[i]]) <- paste(rownames(x$li),i,sep="")
   }
   res <- do.call("rbind",res)
@@ -560,7 +568,8 @@ subparam.subor <- function(x){
 rtestsubor <- function(x, nrepet){
   factor <- x$factor
   res <- list()
-  N <- max(as.numeric(levels(factor)))
+  N <-length(levels(x$factor))
+  nam <- levels(factor)
   appel <- as.list(x$call)
   X <- eval.parent(appel[[2]])$tab
   Y <- eval.parent(appel[[3]])
@@ -569,20 +578,21 @@ rtestsubor <- function(x, nrepet){
     return(sum(m^2))
   }
   for(i in 1:N){
-    X1 <- X[array(factor)==i,]
+    X1 <- X[array(factor)==nam[i],]
     Xwobs <- apply(X1, 2, mean)
     Xobs <- sweep(X1, 2,Xwobs,"-")
-    Xsim <- sapply(1:nrepet, function(x) apply(t <- apply(X, 2, sample)[array(factor)==i,], 2, mean))
+    Xsim <- sapply(1:nrepet, function(x) apply(t <- apply(X, 2, sample)[array(factor)==nam[i],], 2, mean))
     Xtest <- subkrandtest(obs=Xwobs, sim=t(Xsim), "two-sided")
-    w1 <- apply(Y[array(factor)==i,], 2, sum)
-    Y1 <- sweep(Y[array(factor)==i,], 2, w1, "/")
+    w1 <- apply(Y[array(factor)==nam[i],], 2, sum)
+    Y1 <- sweep(Y[array(factor)==nam[i],], 2, w1, "/")
     obs <- apply(Y1, 2, calcul.margi, mil = Xobs)
     obs <- c(obs, OMI.mean = mean(obs,na.rm=TRUE))
-    sim <- sapply(1:nrepet, function(x) apply(sweep(t <- apply(Y, 2, sample)[array(factor)==i,], 2,apply(t, 2, sum),"/"), 2, calcul.margi, mil = Xobs))
+    sim <- sapply(1:nrepet, function(x) apply(sweep(t <- apply(Y, 2, sample)[array(factor)==nam[i],], 2,apply(t, 2, sum),"/"), 2, calcul.margi, mil = Xobs))
     sim <- rbind(sim, OMI.mean = apply(sim, 2, mean,na.rm=TRUE))
     omitest <- subnikrandtest(obs = obs, sim = t(sim),subpvalue=Xtest$subpvalue)
     res[[i]] <- list("Subsettest" = Xtest, "witomig_ktest" = omitest)
   }
+  names(res) <- nam
   return(res)
 }
 #' @rdname subniche
