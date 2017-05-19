@@ -3,8 +3,8 @@ Subniche Documentation for the Within Outlying Mean Indexes calculations (WitOMI
 
 [subniche](https://cran.r-project.org/web/packages/subniche/index.html) is an open-source R (R Core Team, 2017) package that implements functions useful for the calculation of the Within Outlying Mean Indexes (WitOMI) and their respective statistical tests (Karasiewicz, 2017; Karasiewicz et al., 2017). It consists of complementary calculations to the Outlying Mean Index analysis (OMI) (Dolédec et al., 2000). OMI analysis can be implemented with the `niche` function from the [ade4](https://cran.r-project.org/web/packages/ade4/index.html) package (Dray and Dufour, 2007). WitOMI analysis enables to explore niche shift in a community and environmental constraints within an Euclidean space, with graphical displays. The method allows to divide the realized niche, estimated from the `niche` function into subniches defined by a factor (time, space), which creates the subsets of habitat conditions.
 
-How to get started
-------------------
+To get started 
+-----------------
 
 Install and load the R package from [CRAN](https://cran.r-project.org/) using the following commands on the R console:
 
@@ -33,7 +33,7 @@ Generate the data required to run this example
 Get the data set “drome” from the [subniche](https://cran.r-project.org/web/packages/subniche/index.html) package (Karasiewicz et al., 2017). This data set includes, fish species occurence along with environmental variables.
 
 ``` r
-data(drome)
+drome
 ```
 
 Performing the OMI analysis
@@ -48,7 +48,7 @@ scatter(dudi1)
 
 ![](README_files/figure-markdown_github/unnamed-chunk-4-1.png)
 
-The graph display the correlation between the different environmental variables. Next the OMI analysis uses the standardized environmental table from the PCA in combination with the faunistic data to performed the OMI analysis. The standardized environmental table can be extracted from the `dudi1` with `$tab` as follow:
+The graph displays the correlation between the different environmental variables. Then, the OMI analysis uses the standardized environmental table from the PCA in combination with the faunistic data to perform the OMI analysis. The standardized environmental table can be extracted from the `dudi1` with `$tab` as follow:
 
 ``` r
 kable(dudi1$tab)
@@ -121,7 +121,7 @@ kable(dudi1$tab)
 |   0.0994836|   0.1561175|   0.2074262|   0.2216407|   0.0667895|   0.5831102|
 |  -0.3805643|   0.9750945|  -0.6752384|   0.2216407|   0.5409842|   1.4177290|
 
-The next step is to perform the OMI analysis from Dolédec et al. (2000) by implementing the function `niche` from the [ade4](https://cran.r-project.org/web/packages/ade4/index.html) package (Dray and Dufour, 2007).
+The next step performs the OMI analysis (Dolédec et al., 2000) by implementing the function `niche` from the [ade4](https://cran.r-project.org/web/packages/ade4/index.html) package (Dray and Dufour, 2007).
 
 ``` r
 nic1 <- niche(dudi1, drome$fish, scann = FALSE)
@@ -158,7 +158,7 @@ plot(nic1)
 
 ![](README_files/figure-markdown_github/unnamed-chunk-7-1.png)
 
-The graph display the results of the OMI analysis within a two-dimensional Euclidean space. Its display the species niche position (labels in Samples and Species, top-right) and breadth (ellipses in Niches, bottom-right graph), within the environmental gradients (summarized by Variables). The species niche parameter (Inertia, OMI, Tol and Rtol) are calculated with the `niche.parameter` function from the [ade4](https://cran.r-project.org/web/packages/ade4/index.html) package (Dray and Dufour, 2007). More details on the niche parameters calculation in Dolédec et al. (2000).
+The graph displays the results of the OMI analysis within a two-dimensional Euclidean space. It represents the species niche position (labels in Samples and Species, top-right) and breadth (ellipses in Niches, bottom-right graph), within the environmental gradients (summarized by Variables). The species niche parameters (Inertia, OMI, Tol and Rtol) are calculated with the `niche.parameter` function from the [ade4](https://cran.r-project.org/web/packages/ade4/index.html) package (Dray and Dufour, 2007). More details about the niche parameters calculation are available in Dolédec et al. (2000).
 
 ``` r
 kable(niche.param(nic1))
@@ -180,7 +180,7 @@ kable(niche.param(nic1))
 | STR |   9.917999|   5.2753874|  1.1855758|  3.4570355|  53.2|  12.0|  34.9|
 | BAR |   8.344112|   3.8305122|  1.3016577|  3.2119418|  45.9|  15.6|  38.5|
 
-The test for statistical significance can now be implemented, which correspond to the comparison between the observe species' marginality and the simulated values, hereafter 100 random permutations, under the null hypothesis that the species is indifferent to its environment (Dolédec et al., 2000).
+The test for statistical significance can now be implemented. It corresponds to the comparison between the observed species' marginality and the simulated values, hereafter 100 random permutations, under the null hypothesis that each species is indifferent to its environment (Dolédec et al., 2000).
 
 ``` r
 rtest(nic1,100)
@@ -213,7 +213,7 @@ rtest(nic1,100)
 Subsets creation
 ----------------
 
-Herein, for the sake of the example, we will create two subsets. A `factor` needs to be made, in order to divide the data in two subsets. We used the functions [cutree](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/cutree.html) and [hclust](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/hclust.html) to create a cluster, `k=2`, following the `ward.D` method. The function create the subsets based on a dissimilarity matrix created by [dist](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/dist.html), with the SUs of `nic1`. It divided the sampling domain into two subset along the first OMI axis. Blue corresponds to downstream habitat conditions, and the red to the upstream conditions.
+Herein, for the sake of the example, we will create two subsets. A `factor` needs to be defined, in order to divide the data set in two subsets. We use the functions [cutree](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/cutree.html) and [hclust](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/hclust.html) to create a cluster, `k=2`, following the `ward.D` method. The function creates the subsets based on a dissimilarity matrix created with [dist](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/dist.html), with the SUs of `nic1`. It divided the sampling domain into two subsets along the first OMI axis. Blue points correspond to downstream habitat conditions while red points are the upstream conditions.
 
 ``` r
 # Creation of the factor
@@ -325,9 +325,9 @@ rtest(subnic1)
 Calculation of the WitOMI (Spatial example)
 -------------------------------------------
 
-![](README_files/Warning.png) The result of the test on marginality from the OMI analysis are important for the relevance of the WitOMI calculation. The following functions will still calculate the WitOMI even if the OMI are not significant. For the WitOMI to be use for interpretation, the OMI should first be significant. Then, the probability for the WitOMI to be significant within the subset *G<sub>K</sub>* correspond to the `$witomigtest$SubniPvalue` wihtin the `rtestrefor` function for WitOMI*G*. And the equivalent for the WitOMI*G<sub>K</sub>* is `$witomig_ktest$SubniPvalue` in the `rtestsubor`.
+![](README_files/Warning.png) The result of the test on marginality from the OMI analysis are important for the relevance of the WitOMI calculation. The following functions will still calculate the WitOMI even if the OMI are not significant. To be valid, the WitOMI analysis must be done only on species with significant OMI. Then, the probability for the WitOMI to be significant within the subset *G<sub>K</sub>* corresponds to the `$witomigtest$SubniPvalue` wihtin the `rtestrefor` function for WitOMI*G*. And the equivalent for the WitOMI*G<sub>K</sub>* is `$witomig_ktest$SubniPvalue` in the `rtestsubor`.
 
-`margvect`displays the marginality vector of the suborigins,*G<sub>K</sub>* ,within the overall available habitat conditions (black polygon), the available resource under each subset habitat condition (red polygons), and the species subniche (species label).
+`margvect`displays the marginality vector of the suborigins,*G<sub>K</sub>* within the overall available habitat conditions (black polygon), the available resources under each subset habitat conditions (red polygons) and the species subniche (species label).
 
 ``` r
 margvect(subnic1)
@@ -335,7 +335,7 @@ margvect(subnic1)
 
 ![](README_files/figure-markdown_github/unnamed-chunk-15-1.png)
 
-`subplot` displays the subset's constraint of habitat conditions (red polygons), found within the overall available habitat condition (black polygons), and the corresponding species subniche positions. The arrows representing the marginality vectors from the sub-orgins *G<sub>K</sub>* (red dots), corresponds to the graphical representation of the WitOMI*G<sub>K</sub>*.
+`subplot` displays the subset's constraint of habitat conditions (red polygons), found within the overall available habitat conditions (black polygons), and the corresponding species subniche positions. The arrows represent the marginality vectors from the sub-orgins *G<sub>K</sub>* (red dots) and corresponds to the graphical representation of the WitOMI*G<sub>K</sub>*.
 
 ``` r
 subplot(subnic1)
@@ -343,7 +343,7 @@ subplot(subnic1)
 
 ![](README_files/figure-markdown_github/unnamed-chunk-16-1.png)![](README_files/figure-markdown_github/unnamed-chunk-16-2.png)
 
-`subparam.refor` calculates the species marginality (WitOMI*G*), tolerance (Tol) and residual tolerance (Rtol) to the average habitat condition (*G*). For details on the parameters calculation see Karasiewicz et al. (2017).
+`subparam.refor` calculates the species marginality (WitOMI*G*), tolerance (Tol) and residual tolerance (Rtol) to the average habitat conditions (*G*). For details about the parameters calculation see Karasiewicz et al. (2017).
 
 ``` r
 kable(subparam.refor(subnic1))
@@ -384,7 +384,7 @@ kable(subparam.refor(subnic1))
 refor <- rtestrefor(subnic1,100)
 ```
 
-First,for each of the two subsets, the subset statictical significance is tested with the following null hypothesis that *G<sub>K</sub>* is not different from the overall average habitat conditions, represented by *G*. The subsets *P* value is equal to the product of equiprobabilities to find the same mean value for each variables (Karasiewicz et al., 2017).
+First,for each of the two subsets, the subset statictical significance is tested with the null hypothesis that *G<sub>K</sub>* is not different from the overall average habitat conditions represented by *G*. The subsets *P* value is equal to the product of equiprobabilities to find the same mean value for each variables (Karasiewicz et al., 2017).
 
 ``` r
 refor[[1]]$Subsettest
@@ -430,7 +430,7 @@ refor[[2]]$Subsettest
     ## Subsets Pvalue: 9.420452e-13 
     ## other elements: subpvalue call
 
-Second the species marginality is tested for statistical significance following the null hypothesis that the species within each of the subsets is uninfluenced by its overall average habitat conditions (ubiquitous), for WitOMI*G* (Karasiewicz et al., 2017).
+Second, the species marginality is tested for statistical significance with the null hypothesis that each species within each subset is uninfluenced by its overall average habitat conditions (ubiquitous), for WitOMI*G* (Karasiewicz et al., 2017).
 
 ``` r
 refor[[1]]$witomigtest
@@ -490,7 +490,7 @@ refor[[2]]$witomigtest
     ## 
     ## other elements: adj.method sub.pvalue subni.pvalue call
 
-`subparam.subor` calculates the species marginality (WitOMI*G<sub>K</sub>*), tolerance (Tol) and residual tolerance (Rtol) to the subset average habitat condition (*G<sub>K</sub>*). For details on the parameters calculation see Karasiewicz et al. (2017).
+`subparam.subor` calculates the species marginality (WitOMI*G<sub>K</sub>*), tolerance (Tol) and residual tolerance (Rtol) to the subset average habitat conditions (*G<sub>K</sub>*). For details about the parameters calculation see Karasiewicz et al. (2017).
 
 ``` r
 kable(subparam.subor(subnic1))
@@ -525,7 +525,7 @@ kable(subparam.subor(subnic1))
 | STR2 |  4.632032|   0.4271921|  0.8373510|  3.3674884|         9.2|  18.1|  72.7|
 | BAR2 |  4.275254|   0.0732369|  0.6000366|  3.6019803|         1.7|  14.0|  84.3|
 
-In a similar fashion, `rtestsubor` calculates the subniches' parameters from *G<sub>K</sub>* with the respective significance test. The output of the `rtestsubor` function is an object of class `list`, which includes the results of the WitOMI*G<sub>K</sub>* significance test, under each of the two subsets defined by the `$factor`.
+In a similar way, `rtestsubor` calculates the subniches' parameters from *G<sub>K</sub>* with the respective test for significance. The output of the `rtestsubor` function is an object of class `list`, which includes the results of the WitOMI*G<sub>K</sub>* significance test under each of the two subsets defined by the `$factor`.
 
 ``` r
 subor <- rtestsubor(subnic1,100)
@@ -577,7 +577,7 @@ subor[[2]]$Subsettest
     ## Subsets Pvalue: 9.420452e-13 
     ## other elements: subpvalue call
 
-Second the species marginality is tested for significance following the null hypothesis that the species within a subset is uninfluenced by its subset average habitat conditions (ubiquitous), for WitOMI*G<sub>K</sub>* (Karasiewicz et al., 2017).
+The species marginality is then tested for significance with the null hypothesis that each species within a subset is uninfluenced by its subset average habitat conditions (ubiquitous), for WitOMI*G<sub>K</sub>* (Karasiewicz et al., 2017).
 
 ``` r
 subor[[1]]$witomig_ktest
@@ -640,7 +640,7 @@ subor[[2]]$witomig_ktest
 Exercise (temporal example)
 ===========================
 
-Now, try to the same work but the data `ardecheinv`. Herein, the invertebrates abundances data was log(x+1) transform and look the `$env` data to find the seasons. Replace spring and autumn by numbers for the `subniche` function to work work correctly. After OMI analysis, and WitOMI calculations, you should find the following:
+Now, try to do the same work but with the data `ardecheinv`. The invertebrates abundances were log(x+1) transformed to do the analysis. Take a look at the `$env` data to find the different seasons. Replace spring and autumn by numbers to allow the `subniche` function to work properly. After the OMI analysis and WitOMI calculations, you should obtain the following results:
 
 ![](README_files/figure-markdown_github/unnamed-chunk-29-1.png)![](README_files/figure-markdown_github/unnamed-chunk-29-2.png)![](README_files/figure-markdown_github/unnamed-chunk-29-3.png)![](README_files/figure-markdown_github/unnamed-chunk-29-4.png)![](README_files/figure-markdown_github/unnamed-chunk-29-5.png)![](README_files/figure-markdown_github/unnamed-chunk-29-6.png)![](README_files/figure-markdown_github/unnamed-chunk-29-7.png)
 
