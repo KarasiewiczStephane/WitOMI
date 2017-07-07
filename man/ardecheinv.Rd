@@ -27,6 +27,6 @@ The \code{ardecheinv} data are the temporal example used as an ecological applic
 Karasiewicz et al. (2017).
 }
 \references{
-Karasiewicz, S., Doledec, S., Lefebvre, S., (2017). Within outlying mean indexes: Refining the omi analysis for the realized niche decomposition. \emph{PeerJ Preprints}. \url{doi:https://doi.org/10.7287/peerj.preprints.2810v1}.
+Karasiewicz S.,Doledec S.and Lefebvre S. (2017). Within outlying mean indexes: refining the OMI analysis for the realized niche decomposition. \emph{PeerJ} 5:e3364. \url{https://doi.org/10.7717/peerj.3364}.
 }
 \keyword{datasets}

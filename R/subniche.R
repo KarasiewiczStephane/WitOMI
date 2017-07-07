@@ -47,15 +47,18 @@
 #' subset. So comparing different subniches of one species, found within different subsets, is only relevant to \emph{G}. The community's subniches can be compared to both \emph{G}
 #' and \emph{G_k}, but \emph{G}, being the mean environmental conditions found within the full scale, will not express the specificity of the environmental conditions that the species
 #' encountered at the subset. \emph{G_k}, being the mean environmental conditions of the subset, will reflect the atypical value of the environmental condition, making the
-#' comparison of the community's subniches parameters more relevant.
+#' comparison of the community's subniches parameters more relevant. More information on the ecological concept can be found in Karasiewicz \emph{et al.} 2017.
 #'
 #' For more details description on the package use:\url{https://github.com/KarasiewiczStephane/WitOMI}.
 #'
-#' @references Doledec S., Chessel D. and Gimaret C. (2000). Niche separation in community analysis: a new method. \emph{Ecology},\bold{81}, 2914-1927.
+#' @references Karasiewicz S.,Doledec S.and Lefebvre S. (2017). Within outlying mean indexes: refining the OMI analysis for the realized niche decomposition. \emph{PeerJ} 5:e3364. \url{https://doi.org/10.7717/peerj.3364}.
 #'
 #' Calenge C., Dufour A.B. and Maillard D. (2005). K-select analysis: a new method to analyse habitat selection in radio-tracking studies. \emph{Ecological modelling}, \bold{186}, 143-153.
 #'
-#' Karasiewicz S.,Doledec S.and Lefebvre S. (submitted). Within outlying mean indexes: refining the OMI analysis for the realized niche decomposition.
+#' Doledec S., Chessel D. and Gimaret C. (2000). Niche separation in community analysis: a new method. \emph{Ecology},\bold{81}, 2914-1927.
+#'
+#' Thomas, D.L., Taylor, E.J. (1990). Study Designs and Tests for Comparing Resource Use and Availability II. \emph{Natl. Widl.} \bold{54}(2), 322-330.
+#'
 #' @seealso \link[ade4]{niche} \link[ade4]{niche.param}
 #' @examples
 #'library(subniche)

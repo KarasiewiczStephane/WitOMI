@@ -1,14 +1,18 @@
 citHeader("To cite subniche in publications use one these references:")
 
-citEntry(entry="TechReport",
+citEntry(entry="Article",
          title = "Within outlying mean indexes: refining the OMI analysis for the realized niche decomposition",
-         author = personList(as.person("S. Karasiewicz"),as.person("S. Dol{\'e}dec"),as.person("S. Lefebvre") ),
-         institution = "PeerJ Preprints",
+         author = personList(as.person("S. Karasiewicz"),as.person("S. Doledec"),as.person("S. Lefebvre") ),
+         journal = "PeerJ. ",
          year = "2017",
+         volume = "5:e3364.",
+         url= "https://doi.org/10.7717/peerj.3364",
          textVersion =
-           paste("Karasiewicz, S. and Dol{\'e}dec, S. and Lefebvre S.",
+           paste("Karasiewicz, S. and Doledec, S. and Lefebvre S.",
                  "(2017): ",
-                 "Within outlying mean indexes: refining the OMI analysis for the realized niche decomposition",
-                 "PeerJ Preprints",
+                 "Within outlying mean indexes: refining the OMI analysis for the realized niche decomposition.",
+                 "PeerJ, ",
+                 "5:e3364.",
+                 " https://doi.org/10.7717/peerj.3364",
                  sep="")
 )

@@ -19,7 +19,7 @@
 #'
 #' @source Doledec S., Chessel D. and Gimaret C. (2000). Niche separation in community analysis: a new method. \emph{Ecology},\bold{81}(10), 2914-1927.
 #'
-#' @references Karasiewicz, S., Doledec, S., Lefebvre, S., (2017). Within outlying mean indexes: Refining the omi analysis for the realized niche decomposition. \emph{PeerJ Preprints}. \url{https://doi.org/10.7287/peerj.preprints.2810v1}.
+#' @references Karasiewicz S.,Doledec S.and Lefebvre S. (2017). Within outlying mean indexes: refining the OMI analysis for the realized niche decomposition. \emph{PeerJ} 5:e3364. \url{https://doi.org/10.7717/peerj.3364}.
 #'
 #'
 #'
@@ -46,7 +46,7 @@
 #'
 #' @source Merigoux, S. and Doledec, S. (2004). Hydraulic requirements of stream communities: A case study on invertebrates. \emph{Freshwater Biology}, \bold{49}(5), 600-613.
 #'
-#' @references Karasiewicz, S., Doledec, S., Lefebvre, S., (2017). Within outlying mean indexes: Refining the omi analysis for the realized niche decomposition. \emph{PeerJ Preprints}. \url{https://doi.org/10.7287/peerj.preprints.2810v1}.
+#' @references Karasiewicz S.,Doledec S.and Lefebvre S. (2017). Within outlying mean indexes: refining the OMI analysis for the realized niche decomposition. \emph{PeerJ} 5:e3364. \url{https://doi.org/10.7717/peerj.3364}.
 #'
 "ardecheinv"
 
