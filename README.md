@@ -1373,4 +1373,4 @@ Dray, S., Dufour, A., 2007. The ade4 package: Implementing the duality diagram f
 
 Karasiewicz, S., 2017. Subniche: Within outlying mean indexes: Refining the omi analysis. doi:[https://zenodo.org/badge/DOI/10.5281/zenodo.438723.svg](https://doi.org/https://zenodo.org/badge/DOI/10.5281/zenodo.438723.svg)
 
-Karasiewicz, S., Dolédec, S., Lefebvre, S., 2017. Within outlying mean indexes: Refining the omi analysis for the realized niche decomposition. PeerJ Preprints. doi:[https://doi.org/10.7287/peerj.preprints.2810v1](https://doi.org/https://doi.org/10.7287/peerj.preprints.2810v1)
+Karasiewicz S, Dolédec S, Lefebvre S. (2017) Within outlying mean indexes: refining the OMI analysis for the realized niche decomposition. PeerJ, 5:e3364. doi:[https://doi.org/10.7717/peerj.3364](https://doi.org/10.7717/peerj.3364)
