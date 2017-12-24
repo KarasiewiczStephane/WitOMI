@@ -640,7 +640,7 @@ subor[[2]]$witomig_ktest
 Exercise (temporal example)
 ===========================
 
-Now, try to do the same work but with the data `ardecheinv`. The invertebrates abundances were log(x+1) transformed to do the analysis. Take a look at the `$env` data to find the different seasons. Replace spring and autumn by numbers to allow the `subniche` function to work properly. After the OMI analysis and WitOMI calculations, you should obtain the following results:
+Now, try to do the same work but with the data `ardecheinv`. Herein, **the invertebrates' abundances need to be log(x+1) transform prior the analysis**, and the first column of the `$env` data are the seasons use to divide the dataset. Replace spring and autumn by numbers to allow the `subniche` function to work properly. After the OMI analysis and WitOMI calculations, you should obtain the following results:
 
 ![](README_files/figure-markdown_github/unnamed-chunk-29-1.png)![](README_files/figure-markdown_github/unnamed-chunk-29-2.png)![](README_files/figure-markdown_github/unnamed-chunk-29-3.png)![](README_files/figure-markdown_github/unnamed-chunk-29-4.png)![](README_files/figure-markdown_github/unnamed-chunk-29-5.png)![](README_files/figure-markdown_github/unnamed-chunk-29-6.png)![](README_files/figure-markdown_github/unnamed-chunk-29-7.png)
 
