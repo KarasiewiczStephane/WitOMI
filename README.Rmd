@@ -215,7 +215,12 @@ subor[[2]]$witomig_ktest
 Exercise (temporal example)
 ========
 
-Now, try to the same work but the data `ardecheinv`. Herein, **the invertebrates' abundances need to be log(x+1) transform prior the analysis**, and the first column of the `$env` data are the seasons use to divide the dataset. Replace spring and autumn by numbers for the `subniche` function to work correctly. After OMI analysis, and WitOMI calculations, you should find the following:
+Now, try to the same work but the data `ardecheinv`. Herein, __**the invertebrates' abundances need to be log(x+1) transform prior the analysis, and the first column of the `$env` data are the seasons use to divide the dataset**__. 
+Therefore, the creation of the required `factor` is done by the following line:
+
+`fact <- factor(archecheinv$env[,1])`
+
+Replace spring and autumn by numbers for the `subniche` function to work correctly. After OMI analysis, and WitOMI calculations, you should find the following:
 
 ```{r, echo=FALSE}
 data(ardecheinv)
