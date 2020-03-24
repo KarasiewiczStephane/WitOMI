@@ -4,7 +4,8 @@
 \name{drome}
 \alias{drome}
 \title{Spatial data}
-\format{The \code{drome} is a list of 3 components.
+\format{
+The \code{drome} is a list of 3 components.
 
  \code{env}
    is a dataframe with 64 rows with 6 environmental tables, collected in 10 different rivers.
@@ -15,7 +16,8 @@
 
 
  \code{code}
-   is a dataframe with 13 rows and 2 columns, the species, common and scientific, name and their respective code.}
+   is a dataframe with 13 rows and 2 columns, the species, common and scientific, name and their respective code.
+}
 \source{
 Doledec S., Chessel D. and Gimaret C. (2000). Niche separation in community analysis: a new method. \emph{Ecology},\bold{81}(10), 2914-1927.
 }

@@ -4,7 +4,8 @@
 \name{ardecheinv}
 \alias{ardecheinv}
 \title{Temporal data}
-\format{The \code{ardecheinv} is a list of 3 components.
+\format{
+The \code{ardecheinv} is a list of 3 components.
 
  \code{env}
    is a dataframe of 67 rows with 5 environmental tables, collected in spring and autumn.
@@ -15,7 +16,8 @@
 
 
  \code{code}
-   is a dataframe with 57 rows and 2 columns, the species scientific name and their respective code.}
+   is a dataframe with 57 rows and 2 columns, the species scientific name and their respective code.
+}
 \source{
 Merigoux, S. and Doledec, S. (2004). Hydraulic requirements of stream communities: A case study on invertebrates. \emph{Freshwater Biology}, \bold{49}(5), 600-613.
 }

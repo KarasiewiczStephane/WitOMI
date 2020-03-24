@@ -3,9 +3,6 @@
 \name{subniche}
 \alias{subniche}
 \alias{print.subniche}
-\alias{plot.subniche}
-\alias{margvect}
-\alias{subplot}
 \alias{summary.subniche}
 \alias{refparam}
 \alias{rtest.subniche}
@@ -15,17 +12,6 @@
 \alias{rtestsubor}
 \alias{print.subkrandtest}
 \alias{print.subnikrandtest}
-\alias{print.subniche}
-\alias{plot.subniche}
-\alias{margvect}
-\alias{subplot}
-\alias{summary.subniche}
-\alias{refparam}
-\alias{rtest.subniche}
-\alias{subparam.refor}
-\alias{rtestrefor}
-\alias{subparam.subor}
-\alias{rtestsubor}
 \alias{subkrandtest}
 \alias{subnikrandtest}
 \title{The Within Outlying Mean Indexes calculation}
@@ -37,12 +23,6 @@ subniche(nic, factor)
 \method{print}{subnikrandtest}(x, ...)
 
 \method{print}{subniche}(x, ...)
-
-\method{plot}{subniche}(x, xax = 1, yax = 2, ...)
-
-margvect(x, xax = 1, yax = 2, colo = NULL, ...)
-
-subplot(x, xax = 1, yax = 2, colo = NULL, ...)
 
 \method{summary}{subniche}(object, ...)
 
@@ -58,11 +38,24 @@ subparam.subor(x)
 
 rtestsubor(x, nrepet)
 
-subkrandtest(sim, obs, alter = "greater", call = match.call(),
-  names = colnames(sim), p.adjust.method = "none")
+subkrandtest(
+  sim,
+  obs,
+  alter = "greater",
+  call = match.call(),
+  names = colnames(sim),
+  p.adjust.method = "none"
+)
 
-subnikrandtest(sim, obs, alter = "greater", subpvalue, call = match.call(),
-  names = colnames(sim), p.adjust.method = "none")
+subnikrandtest(
+  sim,
+  obs,
+  alter = "greater",
+  subpvalue,
+  call = match.call(),
+  names = colnames(sim),
+  p.adjust.method = "none"
+)
 }
 \arguments{
 \item{nic}{an object of class \code{niche}.}
@@ -72,12 +65,6 @@ subnikrandtest(sim, obs, alter = "greater", subpvalue, call = match.call(),
 \item{x}{an object of class \code{subniche}.}
 
 \item{...}{further arguments passed to or from other methods}
-
-\item{xax}{specify the x column in your matrix}
-
-\item{yax}{specify the y column in your matrix}
-
-\item{colo}{string of character specifying the subsets color. Default color is rezd.}
 
 \item{object}{an object of class \code{subniche}.}
 
