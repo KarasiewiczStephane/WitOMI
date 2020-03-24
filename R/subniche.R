@@ -1,6 +1,6 @@
 #' @import ade4
 #' @title The Within Outlying Mean Indexes calculation
-#' @aliases subniche print.subniche plot.subniche margvect subplot summary.subniche refparam rtest.subniche subparam.refor rtestrefor subparam.subor rtestsubor
+#' @aliases subniche print.subniche summary.subniche refparam rtest.subniche subparam.refor rtestrefor subparam.subor rtestsubor
 #' @description  The indexes allows to divide the niche, estimated from the \link[ade4]{niche} function in the \link{ade4} package into subniches defined by a factor, which creates the
 #' subsets. See details for more information.
 #' @usage subniche(nic, factor)
@@ -9,9 +9,6 @@
 #' @param x an object of class \code{subniche}.
 #' @param xtest an object of class \code{subniche}.
 #' @param object an object of class \code{subniche}.
-#' @param xax specify the x column in your matrix
-#' @param yax specify the y column in your matrix
-#' @param colo string of character specifying the subsets color. Default color is rezd.
 #' @param ...	further arguments passed to or from other methods
 #' @param sim a numeric vector of simulated values
 #' @param obs a numeric vector of an observed value
@@ -122,7 +119,7 @@ subniche <- function(nic, factor){
   mutemp <- do.call("rbind", mutemp)
   nic$sub <- mutemp
   nic$G_k <- G_k
-  rownames(nic$G_k) <- paste(rep("G_k",dim(nic$G_k)[1]),1:dim(nic$G_k)[1],sep="")
+  rownames(nic$G_k) <- paste(rep("G_k",dim(nic$G_k)[1]),levels(factor),sep="")
   nic$factor <- factor
   class(nic) <- c("subniche", "dudi")
   return(nic)
@@ -241,115 +238,6 @@ print.subniche <- function (x, ...)
   cat("\n")
 }
 
-#' @rdname subniche
-#' @method plot subniche
-#' @export
-#' @importFrom graphics par layout
-plot.subniche <- function (x, xax = 1, yax = 2, ...)
-{
-  if (!inherits(x, "subniche"))
-    stop("Use only with 'subniche' objects")
-  if (x$nf == 1) {
-    warnings("One axis only : not yet implemented")
-    return(invisible())
-  }
-  if (xax > x$nf)
-    stop("Non convenient xax")
-  if (yax > x$nf)
-    stop("Non convenient yax")
-  def.par <- par(no.readonly = TRUE)
-  on.exit(par(def.par))
-  layout(matrix(c(1, 2, 3, 4, 4, 5, 4, 4, 6), 3, 3), respect = TRUE)
-  par(mar = c(0.1, 0.1, 0.1, 0.1))
-  s.corcircle(x$as, xax, yax, sub = "Axis", csub = 2, clabel = 1.25)
-  s.arrow(x$c1, xax, yax, sub = "Variables", csub = 2, clabel = 1.25)
-  scatterutil.eigen(x$eig, wsel = c(xax, yax))
-  s.chull(x$ls,factor(rep(1,dim(x$ls)[1])), xax, yax, clabel = 0,optchull = 1, cpoint = 2, sub = "Samples and Species",
-          csub = 2)
-  s.label(x$li, xax, yax, clabel = 1.5, add.plot = TRUE)
-  s.label(x$ls, xax, yax, clabel = 1.25, sub = "Samples", csub = 2)
-  s.chull(x$ls,factor(rep(1,dim(x$ls)[1])), xax, yax, clabel = 0,optchull = 1, cpoint = 0, add.plot = T)
-  s.distri(x$ls, eval.parent(as.list(x$call)[[3]]), cstar = 0,
-           axesell = FALSE, cellipse = 1, sub = "Niches", csub = 2)
-  s.chull(x$ls,factor(rep(1,dim(x$ls)[1])), xax, yax, clabel = 0,optchull = 1, cpoint = 0, add.plot = T)
-}
-#' @rdname subniche
-#' @export
-#' @importFrom graphics par layout
-margvect <- function (x, xax = 1, yax = 2, colo = NULL, ...)
-{
-  if (!inherits(x, "subniche"))
-    stop("Use only with 'subniche' objects")
-  if (x$nf == 1) {
-    warnings("One axis only : not yet implemented")
-    return(invisible())
-  }
-  if (xax > x$nf)
-    stop("Non convenient xax")
-  if (yax > x$nf)
-    stop("Non convenient yax")
-  if (is.null(colo) == TRUE){
-    colo <- c(rep("red",length(levels(x$factor))))
-  }
-  def.par <- par(no.readonly = TRUE)
-  on.exit(par(def.par))
-  layout(matrix(c(1, 2, 3, 4, 4, 5, 4, 4, 6), 3, 3), respect = TRUE)
-  par(mar = c(0.1, 0.1, 0.1, 0.1))
-  s.corcircle(x$as, xax, yax, sub = "Axis", csub = 2, clabel = 1.25)
-  s.arrow(x$c1, xax, yax, sub = "Variables", csub = 2, clabel = 1.25)
-  scatterutil.eigen(x$eig, wsel = c(xax, yax))
-  s.chull(x$ls,factor(rep(1,dim(x$ls)[1])), xax, yax, optchull = 1,clabel = 0, cpoint = 2, sub = "G_k marginality vectors",
-          csub = 2)
-  s.arrow(x$G_k, xax, yax,  clabel = 1.5, add.plot=T)
-  s.chull(x$ls,factor(rep(1,dim(x$ls)[1])), xax, yax, optchull = 1,clabel = 0, cpoint = 1)
-  s.chull(x$ls, x$factor,label=rownames(x$G_k),clabel = 1.5, col=colo,sub = "Available Resource units",csub = 2, optchull = 1, cpoint = 1, add.plot = T)
-  s.label(x$sub[is.na(x$sub[,1])==FALSE,], xax,yax, clabel = 1.5,sub = "Subniches", csub = 2)
-}
-#' @rdname subniche
-#' @export
-#' @importFrom graphics par layout arrows points
-subplot <- function (x, xax = 1, yax = 2, colo=NULL, ...)
-{
-  if (!inherits(x, "subniche"))
-    stop("Use only with 'subniche' objects")
-  if (x$nf == 1) {
-    warnings("One axis only : not yet implemented")
-    return(invisible())
-  }
-  if (xax > x$nf)
-    stop("Non convenient xax")
-  if (yax > x$nf)
-    stop("Non convenient yax")
-  if (length(levels(x$factor)) > 20)
-    stop("length level factor > 20 ")
-  if (is.null(colo) == TRUE){
-    colo <- c(rep("red",length(levels(x$factor))))
-  }
-  def.par <- par(no.readonly = TRUE)
-  on.exit(par(def.par))
-  op <- par(oma = c(0,0,0,0) + 0.1,
-            mar = c(0,0,0,0) + 0.1)
-  nam <- levels(x$factor)
-  f <- c()
-  for (i in 1:length(nam)){
-    f <- c(f,rep(nam[i],nrow(x$li)))
-  }
-  f <- factor(f)
-  G_k <- x$G_k
-  mut <- x$sub
-  for (i in 1:length(levels(x$factor)))
-  {
-    s.distri(x$ls, eval.parent(as.list(x$call)[[3]]), cstar = 0,axesell = FALSE, cellipse = 0, cpoint=0, sub = nam[i], csub = 2)
-    s.distri(x$ls[x$factor==nam[i],], eval.parent(as.list(x$call)[[3]])[x$factor==nam[i],], cstar = 0,axesell = FALSE, cellipse = 0, cpoint=1, sub = nam[i], csub = 2,add.plot = T)
-    s.label(mut[f==nam[i],],label=rownames(x$li),add.plot = T)
-    arrows(G_k[array(levels(x$factor)==nam[i]), 1],G_k[array(levels(x$factor)==nam[i]), 2],  mut[f==nam[i],1],mut[f==nam[i],2], length = 0.1)
-    points(G_k[array(levels(x$factor)==nam[i]),],pch=16, col=colo[i])
-    s.chull(x$ls[x$factor==nam[i],], factor(rep(1,length(x$factor[which(x$factor==nam[i])]))), clabel = 0,col=colo[i], optchull = 1, cpoint = 0,add.plot = T)
-    s.chull(x$ls,factor(rep(i,length(x$ls[,1]))), clabel = 0,col="black", optchull = 1, cpoint = 0,add.plot = T)
-
-  }
-  par(op)
-}
 #' @rdname subniche
 #' @method summary subniche
 #' @export
