@@ -33,6 +33,9 @@
 #' @importFrom siar convexhull
 #' @importFrom polyclip polyclip
 subarea <- function(subnic){
+  selecto <-  function(x,n){
+    substring(x,nchar(x)-n+1)
+  }
   res <- list()
   res$E <- convexhull(subnic$ls[,1], subnic$ls[,2])
   names(res$E) <- c("TA" ,  "x", "y","samples")
@@ -51,8 +54,8 @@ subarea <- function(subnic){
   for (i in 1:length(spnam)){
     occfact <- factor(Y[,i])
     if (sum(Y[,i])>2){
-    res$NR[[i]] <- convexhull(subnic$ls[which(occfact==1),1], subnic$ls[which(occfact==1),2])
-    names( res$NR[[i]]) <- c("TA","x","y","samples")
+      res$NR[[i]] <- convexhull(subnic$ls[which(occfact==1),1], subnic$ls[which(occfact==1),2])
+      names( res$NR[[i]]) <- c("TA","x","y","samples")
     } else {
       res$NR[[i]] <- list(TA=NULL,x=subnic$ls[which(occfact==1),1], y=subnic$ls[which(occfact==1),2], samples=rownames(subnic$ls[which(occfact==1),]))
     }
@@ -61,27 +64,33 @@ subarea <- function(subnic){
 
   subsp <- subnic$sub
   if(anyNA(subsp))
-    subsp[-which(is.na(subsp[,1])==T),]
+    subsp <- subsp[-which(is.na(subsp[,1])==T),]
 
   subsp <- rownames(subsp)
 
-   res$SR <- list()
+  res$SR <- list()
   for(i in 1:length(lev)){
     y <- Y[subnic$factor==lev[i],]
     ls <- subnic$ls[subnic$factor==lev[i],]
-    subnam <- subsp[grep(lev[i],subsp)]
-    subnam <- sub(lev[i],"",subnam)
+    ch <- nchar(lev[i])
+    subnam <- c()
+    for (k in 1:length(subsp)){
+      if(isTRUE(selecto(subsp[k],ch)==lev[i])){
+        subi <- substr(subsp[k],1,nchar(subsp[k])-ch)
+        subnam <- c(subnam, subi)
+      } else { next }
+    }
     res$SR[[i]] <- list()
     for (j in 1:length(subnam)){
       occfact <- factor(y[,subnam[j]])
       if(sum(y[,subnam[j]])>2){
-      res$SR[[i]][[j]] <- convexhull(ls[which(occfact==1),1], ls[which(occfact==1),2])
-      names( res$SR[[i]][[j]]) <- c("TA","x","y","samples")
+        res$SR[[i]][[j]] <- convexhull(ls[which(occfact==1),1], ls[which(occfact==1),2])
+        names(res$SR[[i]][[j]]) <- c("TA","x","y","samples")
       } else {
         res$SR[[i]][[j]] <- list(TA=NULL,x=subnic$ls[which(occfact==1),1], y=subnic$ls[which(occfact==1),2], samples=rownames(subnic$ls[which(occfact==1),]))
       }
     }
-   names(res$SR[[i]]) <- paste(subnam,lev[i], sep="")
+    names(res$SR[[i]]) <- paste(subnam,lev[i], sep="_")
   }
   names(res$SR) <- lev
 
@@ -89,26 +98,39 @@ subarea <- function(subnic){
   for(i in 1:length(lev)){
     y <- Y[subnic$factor==lev[i],]
     ls <- subnic$ls[subnic$factor==lev[i],]
-    subnam <- subsp[grep(lev[i],subsp)]
-    subnam <- sub(lev[i],"",subnam)
+    ch <- nchar(lev[i])
+    subnam <- c()
+    for (k in 1:length(subsp)){
+      if(isTRUE(selecto(subsp[k],ch)==lev[i])){
+        subi <- substr(subsp[k],1,nchar(subsp[k])-ch)
+        subnam <- c(subnam, subi)
+      } else { next }
+    }
     res$SP[[i]] <- list()
     for (j in 1:length(subnam)){
       if(sum(y[,subnam[j]])>2){
         C <- polyclip(res$K[[i]],res$NR[subnam[j]])
         res$SP[[i]][[j]] <-convexhull(C[[1]]$x, C[[1]]$y)
         names(res$SP[[i]][[j]]) <-  c("TA","x","y","samples")
-        } else {
+      } else {
         res$SP[[i]][[j]] <- res$SR[[i]][[j]]
-        }
+      }
     }
-      names(res$SP[[i]]) <- paste(subnam, lev[i],sep="")
-    }
+    names(res$SP[[i]]) <- paste(subnam, lev[i],sep="")
+  }
   names(res$SP) <- lev
 
   res$SB <- list()
   for(i in 1:length(lev)){
     res$SB[[i]] <- list()
-    subnam <- subsp[grep(lev[i],subsp)]
+    ch <- nchar(lev[i])
+    subnam <- c()
+    for (k in 1:length(subsp)){
+      if(isTRUE(selecto(subsp[k],ch)==lev[i])){
+        subi <- substr(subsp[k],1,nchar(subsp[k])-ch)
+        subnam <- c(subnam, subi)
+      } else { next }
+    }
     for (j in 1:length(subnam)){
       res$SB[[i]][[j]]<- res$SP[[i]][[j]][[1]]-res$SR[[i]][[j]][[1]]
     }
