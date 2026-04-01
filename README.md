@@ -1,3 +1,22 @@
+# WitOMI
+
+> R package for ecological niche decomposition — published on CRAN as [`subniche`](https://cran.r-project.org/package=subniche). Used in peer-reviewed marine ecology research to analyze how species partition habitat conditions across space and time.
+
+## Overview
+
+WitOMI (Within Outlying Mean Indexes) extends the classical OMI niche analysis with sub-niche decomposition. It lets ecologists split a species' realized niche into subsets defined by environmental factors (time, space, disturbance), revealing niche shifts that standard OMI misses.
+
+**Publication:** Karasiewicz S, Dolédec S, Lefebvre S. (2017) *Within outlying mean indexes: refining the OMI analysis for the realized niche decomposition.* PeerJ, 5:e3364. [doi:10.7717/peerj.3364](https://doi.org/10.7717/peerj.3364)
+
+## Tech stack
+
+- **Language:** R
+- **Dependencies:** ade4
+- **Distribution:** CRAN (`install.packages("subniche")`)
+- **Analysis:** Multivariate statistics, niche decomposition, permutation tests
+
+---
+
 Subniche Documentation for the Within Outlying Mean Indexes calculations (WitOMI)
 ================
 
@@ -1379,3 +1398,7 @@ Dray, S., Dufour, A., 2007. The ade4 package: Implementing the duality diagram f
 Karasiewicz, S., 2017. Subniche: Within outlying mean indexes: Refining the omi analysis. doi:[https://zenodo.org/badge/DOI/10.5281/zenodo.438723.svg](https://doi.org/https://zenodo.org/badge/DOI/10.5281/zenodo.438723.svg)
 
 Karasiewicz S, Dolédec S, Lefebvre S. (2017) Within outlying mean indexes: refining the OMI analysis for the realized niche decomposition. PeerJ, 5:e3364. doi:[https://doi.org/10.7717/peerj.3364](https://doi.org/10.7717/peerj.3364)
+
+## Author
+
+**Stéphane Karasiewicz** — [skarazdata.com](https://skarazdata.com) | [LinkedIn](https://www.linkedin.com/in/stephane-karasiewicz/)
